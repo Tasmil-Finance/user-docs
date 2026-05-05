@@ -1,0 +1,133 @@
+---
+title: FAQ
+description: Frequently asked questions
+---
+
+## Onboarding
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Do I need a Stellar wallet first?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Yes. Install Freighter, xBull, or Albedo before connecting to Tasmil. See [Set Up Your Wallet](/docs/getting-started/set-up-wallet) in Getting Started.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">How much do I need to start?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Minimum ~5 XLM for account reserve (Stellar requirement) + ~0.5 XLM for vault deployment gas. For the deposit itself, ~50 USDC or XLM is the practical minimum — below that, gas costs eat returns.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Testnet or mainnet first?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Start on testnet. It uses fake tokens and costs nothing. Switch to mainnet once you're familiar with the flow.
+</div>
+</details>
+
+## Vaults & Yield
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">How long until I see my first APY?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Positions appear within 10 minutes (first rebalance cycle). APY stabilizes after 1-2 position sync cycles (~10-20 minutes total).
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Can I lose money?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Yes, through: impermanent loss on LP positions, protocol smart-contract risk, USDC depeg, or market downturns affecting token prices. Read the [Risks](/docs/trust-and-safety/risks) page for details.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">What happens if the AI makes a bad decision?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+The engine uses APY-proportional weights with risk adjustment — not subjective "intuition." If a pool's APY drops, the engine rebalances away. If 3 consecutive rebalances fail, the vault halts. The AI is formula-driven, not speculative.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Can I change my preset later?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Yes. Switch at any time from Farming settings. The engine rebalances to the new pool set on the next cycle.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Are my funds insured?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+No. Tasmil is non-custodial DeFi — there is no FDIC or insurance of any kind. This is standard for DeFi protocols.
+</div>
+</details>
+
+## Security
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Does Tasmil have access to my private key?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+No. Your wallet private key never leaves your wallet extension. The AI bot uses session keys you authorize — they have limited scope and you can revoke them at any time.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">What can the bot actually do?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Deposit and withdraw within registered strategy contracts. It cannot send to arbitrary addresses, bypass rate limits, or exceed the daily rebalance cap. Full list on the [What the Bot Can Do](/docs/trust-and-safety/what-the-bot-can-do) page.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">What if Tasmil's servers go down?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Your funds stay in your keeper wallet on-chain. You can withdraw directly via Stellar Explorer using your owner key. The bot stops transacting, but funds are never locked.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">Has the code been audited?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+An external audit is planned. Current status is on the [Audits & Addresses](/docs/trust-and-safety/audits-and-addresses) page.
+</div>
+</details>
+
+## Fees & Costs
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">What fees does Tasmil charge?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Currently: none beyond Stellar network gas fees. A performance fee (percentage of returns above HWM) is planned but not yet active. See [Fees & Yield](/docs/how-it-works/fees-and-yield).
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">What are the gas costs?</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Typical rebalance: 0.001-0.005 XLM. Vault deployment: ~0.5 XLM. These go to the Stellar network, not Tasmil.
+</div>
+</details>
+
+## Troubleshooting
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">My positions show empty after depositing.</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Wait 10 minutes for the first rebalance cycle. If still empty after 20 min, check your transaction confirmed on-chain (paste the tx hash in Stellar Expert). If confirmed, check the vault isn't HALTED. See [Troubleshooting](/docs/reference/troubleshooting).
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">A transaction is stuck.</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+If a Soroban transaction is pending beyond 30 seconds, it may have expired due to network congestion. The engine will retry on the next cycle. You don't need to do anything.
+</div>
+</details>
+
+<details className="border border-fd-border rounded-lg mb-3 group">
+<summary className="cursor-pointer px-4 py-3 font-medium text-fd-foreground select-none">The faucet didn't send test XLM.</summary>
+<div className="px-4 pb-3 text-sm text-fd-muted-foreground">
+Check you used the correct network (testnet mode in wallet + Friendbot). Some faucets have rate limits — wait 5 minutes and try again. If still failing, try the Stellar Quest faucet as an alternative. See [Troubleshooting](/docs/reference/troubleshooting).
+</div>
+</details>

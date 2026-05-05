@@ -1,0 +1,12 @@
+{
+  "title": "Reference",
+  "icon": "BookOpen",
+  "pages": [
+    "faq",
+    "glossary",
+    "troubleshooting",
+    "changelog",
+    "roadmap",
+    "sdk"
+  ]
+}

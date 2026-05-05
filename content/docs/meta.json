@@ -1,0 +1,14 @@
+{
+  "title": "Docs",
+  "pages": [
+    "---Overview---",
+    "introduction",
+    "getting-started",
+    "---Product---",
+    "using-the-app",
+    "how-it-works",
+    "---Security & Reference---",
+    "trust-and-safety",
+    "reference"
+  ]
+}

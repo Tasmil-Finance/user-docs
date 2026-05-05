@@ -1,0 +1,71 @@
+---
+title: Create & Fund Your Vault
+description: Deploy your keeper wallet, pick a risk preset, and fund it with USDC or XLM
+---
+
+<TLDR>
+Creating a vault deploys your personal keeper-wallet contract on Stellar (one transaction). Then pick a risk preset — Safe, Balanced, or Aggressive — and fund it with USDC or XLM. The engine starts deploying within 10 minutes.
+</TLDR>
+
+![Vault creation screen](/docs/getting-started/vault-creation.png)
+
+## Step 1: Deploy Your Keeper Wallet
+
+When you click **Create Vault**, Tasmil deploys a Stellar custom-account contract — your keeper wallet. This is a one-time action that requires one signature in your wallet.
+
+**What the transaction does:**
+* Deploys the keeper-wallet contract to a new Stellar address.
+* Sets up your session keys (how the AI bot will sign rebalance transactions).
+* Installs rate limits and a 360-ledger cooldown on every session key.
+
+<Callout type="info">
+You sign one transaction. The keeper wallet is **your** contract — only you control revocation. The AI bot gets session-key access, not ownership.
+</Callout>
+
+## Step 2: Pick a Preset
+
+The preset determines how your funds are allocated and how aggressively the engine rebalances.
+
+| | Safe | Balanced | Aggressive |
+|---|---|---|---|
+| **Primary strategy** | Blend lending | Blend + Soroswap | Blend + Soroswap + Aquarius |
+| **Impermanent loss risk** | None | Moderate | Higher |
+| **APY profile** | Lower, steadier | Medium | Higher, more variable |
+| **Rebalance frequency** | Less (higher threshold) | Standard | More active |
+| **Best if you...** | Want simple deposit-and-forget | Want yield with moderate risk | Are comfortable with DeFi volatility |
+
+**Not sure? Start with Safe.** You can change presets later.
+
+![Preset picker](/docs/getting-started/presets-compare.png)
+
+## Step 3: Fund Your Vault
+
+After deployment and preset selection, you fund the keeper wallet:
+
+**Funding with USDC (mainnet):**
+* Send Stellar-native USDC to your keeper wallet address (shown after deployment).
+* Minimum effective deposit: ~50 USDC (below this, gas costs can eat returns).
+
+**Funding with XLM (mainnet):**
+* Send XLM to the same keeper wallet address.
+* The vault auto-detects which asset arrived and deploys it to matching strategies.
+
+**Both USDC and XLM:**
+* Fund either or both. The engine deploys each independently into its own pool set.
+* The base asset auto-aligns on first fund. If USDC arrives first, USDC becomes the primary view — but both assets earn.
+
+**On testnet:**
+* Use the Friendbot faucet (XLM) or Stellar Quest (test USDC).
+* Same flow as mainnet, no real value.
+
+![Fund vault screen](/docs/getting-started/fund-vault.png)
+
+<Callout type="warn">
+The first deposit triggers a keeper-wallet deployment if you haven't deployed yet. Wait for the deployment to confirm (30-60 seconds on testnet, similar on mainnet) before the fund amount registers.
+</Callout>
+
+## What Happens Next
+
+Within 10 minutes, the rebalance engine detects your deposit and deploys it into the pool set for your preset. The positions screen starts showing accumulation. You don't need to do anything else.
+
+Track the first deployment: [See It Working](/docs/getting-started/see-it-working).

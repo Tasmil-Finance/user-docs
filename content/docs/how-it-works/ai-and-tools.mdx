@@ -1,0 +1,67 @@
+---
+title: AI Agents & Tools
+description: How agents make decisions, the supervisor system, HITL approval, and the tool catalog
+---
+
+<TLDR>
+Tasmil's 13 AI agents are backed by LangGraph. A supervisor agent routes your request to the right specialist. Every agent shares a tool catalog of 60+ read and write operations. Transaction tools always require human approval.
+</TLDR>
+
+## How Agents Decide
+
+Each agent has a SOUL.md instruction file defining its domain. When you send a message:
+
+1. **Supervisor** reads your intent and picks the agent best suited (e.g., "supply 100 USDC" -> Blend agent).
+2. **Specialist agent** determines which tools to call, in what order, based on its instructions.
+3. **Execute.** Read tools return inline. Transaction tools show a card.
+4. **You approve** or reject. Approval -> transaction signed and submitted.
+
+## Supervisor Routing
+
+The supervisor (`interactive/supervisor/`) is itself an agent that:
+* Parses your natural-language request.
+* Matches intent to the agent family (protocol, research, or bridge).
+* Routes to the specific agent within that family.
+* Returns the agent's response to you.
+
+You never talk to the supervisor directly — it's transparent middleware. You always chat naturally; routing is invisible.
+
+## Human-in-the-Loop
+
+![HITL approval card](/docs/using-the-app/chat/approval-card.png)
+
+Every on-chain tool call shows an approval card with:
+* Plain-language action summary.
+* Simulation result (expected outcome, fee).
+* Approve / Reject buttons.
+
+**What you're approving:**
+* The specific transaction the agent proposes.
+* The gas estimate for that transaction.
+* The simulated outcome.
+
+**What you are NOT approving:**
+* Ongoing rebalance authority (that was granted at vault creation via session key).
+* Future agent actions.
+
+Read [Trust & Safety > What the Bot Can Do](/docs/trust-and-safety/what-the-bot-can-do) for the full capability boundary.
+
+## Tool Catalog
+
+The MCP server (`apps/mcp-stellar/`) exposes 60+ tools organized into 8 categories. Every agent has access to some subset of these:
+
+| Category | Tool Count | Purpose | Example |
+|----------|-----------|---------|---------|
+| **AMM** | ~8 | Aquarius, Phoenix pool operations | `aquarius:get-pool-info` |
+| **Lending** | ~10 | Blend supply/withdraw/claim, health factor | `blend:supply`, `blend:get-position` |
+| **Swap** | ~6 | SDEX orderbook, Soroswap routes | `sdex:place-order`, `swap:get-quote` |
+| **Bridge** | ~5 | Allbridge cross-chain | `allbridge:initiate-bridge` |
+| **Vault** | ~4 | DeFindex vault operations | `defindex:deposit` |
+| **Research** | ~22 | CoinGecko, DeFiLlama, CryptoCompare | `research:get-market-data` |
+| **Unified** | ~5 | Cross-protocol comparison, discover | `compare:get-best-yield` |
+| **Tasmil** | ~2 | Vault status, portfolio operations | `tasmil:get-vault-status` |
+
+**Info tools** (categories: Research, Unified) are read-only — no signature needed.
+**Operation tools** (categories: AMM, Lending, Swap, Bridge, Vault, Tasmil) propose transactions — always require HITL approval.
+
+The full tool-by-tool reference is internal (it maps to implementation files in `apps/mcp-stellar/src/tools/`). End users interact with tools through chat — you never call a tool directly by name.

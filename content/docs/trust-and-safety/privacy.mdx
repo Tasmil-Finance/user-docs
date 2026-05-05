@@ -1,0 +1,36 @@
+---
+title: Privacy & Data
+description: What data Tasmil stores, what it doesn't, and how to report vulnerabilities
+---
+
+<TLDR>
+Tasmil stores your vault's public key, position data, and activity history. No personal data, no chat logs sold, no analytics beyond Vercel Analytics. Your wallet private key never touches Tasmil servers.
+</TLDR>
+
+## What We Store
+
+* **Your public key.** The Stellar public key of your connected wallet and vault keeper address.
+* **Vault state.** Preset, status, base asset, deployments.
+* **Positions.** Per-pool token balances, USD-equivalent values, APY snapshots.
+* **Activity history.** Deposit, withdraw, rebalance, harvest events — all from on-chain data.
+* **Chat metadata.** Thread IDs for history continuity. No chat content stored persistently.
+
+## What We Don't Store
+
+* Your wallet private key or secret phrase (never leaves your wallet).
+* Personal identity information (name, email, phone, IP — unless you contact support).
+* Chat message content beyond thread continuity (threads are ephemeral).
+* Financial data beyond what's on-chain (no bank accounts, no KYC).
+
+## Analytics
+
+Tasmil uses Vercel Analytics for page-view counting. No Google Analytics, no Facebook pixel, no third-party ad trackers. Vercel Analytics is privacy-focused and does not use cookies or fingerprinting.
+
+## Responsible Disclosure
+
+To report a security vulnerability:
+
+* Email: security@tasmil-finance.xyz (or the contact listed in the app's Security section).
+* Response SLA: acknowledgment within 48 hours, initial assessment within 5 business days.
+* Please do not disclose publicly until we've had time to assess and patch.
+* We do not currently offer a bug bounty program — this will be updated if that changes.

@@ -1,0 +1,63 @@
+---
+title: Rebalance Engine
+description: When and why the engine rebalances, the weight calculation formula, and safety mechanisms
+---
+
+<TLDR>
+The rebalance engine runs every 10 minutes. It computes a target weight for each pool (APY-proportional, risk-adjusted), compares to current allocation, and triggers a rebalance when any pool drifts more than 5% from target. Safety brakes: 30-min cooldown, 48/day cap, 3-failure halt, >15% TVL halt.
+</TLDR>
+
+![Rebalance flow diagram](/docs/how-it-works/rebalance-flow.png)
+
+## When a Rebalance Happens
+
+Three conditions must all be true:
+
+1. **Drift > 5%.** Any pool's actual allocation differs from its target weight by more than 5 percentage points.
+2. **Cooldown elapsed.** At least 30 minutes since the last rebalance.
+3. **Safety checks pass.** Less than 48 rebalances in the last 24 hours. No active circuit breaker. TVL hasn't dropped >15%.
+
+If all three pass, the engine computes the necessary deposit and withdraw amounts and builds the rebalance transaction.
+
+## How Target Weights Are Calculated
+
+The formula:
+
+```
+weight_per_pool = (apy ^ exponent) / risk_score
+```
+
+Where:
+* `apy` is the 7-day trailing average yield for that pool (annualized).
+* `exponent` is the preset's APY exponent: 1.0 for Safe (linear), 2.0 for Balanced (squared), 3.0 for Aggressive (cubic).
+* `risk_score` combines TVL depth, volume consistency, and protocol track record.
+
+Weights are normalized so they sum to 100%.
+
+**Worked example (Balanced preset, exponent = 2.0):**
+
+| Pool | APY % | APY^2 | Risk Score | Raw Weight | Normalized |
+|------|-------|-------|------------|-------------|------------|
+| Blend Fixed USDC | 4.2% | 17.64 | 1.2 | 14.70 | 42% |
+| Soroswap USDC/XLM | 7.8% | 60.84 | 2.5 | 24.34 | 58% |
+
+The Balanced preset splits ~42% Blend / ~58% Soroswap based on current APYs. If Soroswap's APY jumps to 12% tomorrow, the engine shifts more weight toward it on the next cycle (subject to the max-per-protocol cap of 70%).
+
+## Deploy & Withdraw Flow
+
+When a rebalance triggers:
+
+1. **Simulate.** The engine dry-runs the Soroban deposit/withdraw transactions to verify they'll succeed and estimate fees.
+2. **Build.** It constructs the signed transaction envelope using the session key (the bot's authorized signer).
+3. **Sign & Submit.** The session key signs and submits to the Soroban RPC node.
+4. **Confirm.** The engine waits for ledger confirmation and updates the position database.
+
+The entire flow is automated after initial vault activation. You don't sign each rebalance — the session key you authorized at vault creation signs them on your behalf within the predetermined strategy set.
+
+## Harvest
+
+Every 4 hours, the harvest cron claims BLND emissions from all active Blend positions. The claimed BLND is re-deployed into the vault via the same weight-calculation logic, compounding your yield.
+
+<Callout type="info">
+Harvest is independent of rebalance. It runs on its own schedule and doesn't trigger a full rebalance — only the emission claim and re-deployment.
+</Callout>

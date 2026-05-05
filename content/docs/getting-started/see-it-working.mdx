@@ -1,0 +1,57 @@
+---
+title: See It Working
+description: What to expect in the first hour after funding your vault — drift, deployment, positions, and APY
+---
+
+<TLDR>
+After you fund your vault, the rebalance engine detects your deposit within 10 minutes and deploys it into the preset pool set. The positions screen populates, the performance chart starts, and APY begins accumulating.
+</TLDR>
+
+![Portfolio after first deployment](/docs/getting-started/first-deployment.png)
+
+## First-Hour Timeline
+
+**T+0: Deposit confirmed.**
+Your deposit appears in the portfolio. The vault status is `AWAITING_FUND` — the engine knows there's money to deploy.
+
+**T+~5 min: Position sync.**
+The position sync cron runs every 5 minutes. It reads your on-chain balance and confirms the deposit is settled.
+
+**T+~10 min: First deployment.**
+The rebalance engine (10-minute cycle) detects the deposit, calculates your preset's target weights, and proposes the first allocation transaction. You'll see a confirmation card in the app.
+
+**T+~15 min: Positions appear.**
+After deployment confirms, your Portfolio shows one or more position rows — each listing the protocol, pool, b-token or LP-token balance, USD-equivalent value, and current APY.
+
+**T+~1 hour: First APY tick.**
+APY is computed from the trailing 7-day average of protocol yields. A fresh vault starts with the current snapshot; the APY chip stabilizes after 1-2 position sync cycles.
+
+## Your Portfolio Anatomy
+
+After the first deployment, your portfolio dashboard shows:
+
+![Portfolio dashboard labeled](/docs/getting-started/portfolio-anatomy.png)
+
+1. **Total value (TVL)** — sum of all positions in USD.
+2. **Base asset selector** — USDC or XLM; switching changes the denomination.
+3. **Position rows** — one row per deployed pool. Shows protocol, pool name, token balance, USD value, and a live APY chip.
+4. **Performance chart** — principal line vs. reward line, plus HWM marker.
+5. **Activity feed** — every deposit, rebalance, harvest, and withdrawal, time-stamped.
+
+Read the full breakdown in [Using the App > Portfolio](/docs/using-the-app/portfolio).
+
+## If Nothing Appears
+
+If positions show empty after 20 minutes:
+* Check that your deposit confirmed on-chain (click the transaction hash in your wallet).
+* Ensure your vault status isn't `HALTED` — if it is, the bot has paused for safety. Read [Troubleshooting](/docs/reference/troubleshooting).
+* On testnet, confirm Friendbot sent enough XLM (minimum 10 XLM for vault create + fund).
+* Refresh the page. The frontend syncs to on-chain state on load.
+
+## Next Steps
+
+Your vault is now earning. Explore what else you can do:
+
+* [Chat with the AI agent](/docs/using-the-app/chat) — ask questions, rebalance manually, check rates.
+* [Try a different farming mode](/docs/using-the-app/farming) — Deposit mode for single-pool, Custom mode for full manual control.
+* [Read the rebalance engine docs](/docs/how-it-works/rebalance-engine) — understand exactly when and why funds move.

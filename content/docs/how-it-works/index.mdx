@@ -1,0 +1,27 @@
+---
+title: How It Works
+description: The Tasmil system — vaults, strategies, rebalance engine, AI agents, and fees
+---
+
+<TLDR>
+Tasmil runs on four cron jobs: pool discovery (every 20 min), position sync (every 5 min), rebalance (every 10 min), and harvest (every 4 hours). Each serves one job in the yield pipeline. Together they handle everything from pool selection to reward distribution.
+</TLDR>
+
+![System diagram](/docs/how-it-works/system-diagram.png)
+
+## The 4 Cron Jobs
+
+| Job | Frequency | What It Does |
+|-----|-----------|-------------|
+| **Pool Discovery** | Every 20 min | Scans Blend + Soroswap pools, computes APY and risk scores, updates the pool database |
+| **Position Sync** | Every 5 min | Reads on-chain balances for every vault, updates position rows, tracks HWM |
+| **Rebalance** | Every 10 min | Computes target weights, detects drift >5%, deploys/withdraws as needed |
+| **Harvest** | Every 4 hours | Claims BLND emissions from Blend lending positions, re-deploys into vault |
+
+These jobs run server-side (backend NestJS). They never run in your browser. You don't need the app open for the engine to work.
+
+## The Pipeline
+
+Deposit -> pool discovery finds opportunities -> rebalance engine computes weights -> position sync confirms on-chain state -> harvest claims extras.
+
+Each step is documented in detail: [Vaults & Presets](/docs/how-it-works/vaults-and-presets) - [Strategies](/docs/how-it-works/strategies) - [Rebalance Engine](/docs/how-it-works/rebalance-engine) - [AI Agents](/docs/how-it-works/ai-and-tools) - [Fees & Yield](/docs/how-it-works/fees-and-yield).

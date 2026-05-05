@@ -1,0 +1,11 @@
+{
+  "title": "Trust & Safety",
+  "icon": "Shield",
+  "pages": [
+    "index",
+    "what-the-bot-can-do",
+    "risks",
+    "audits-and-addresses",
+    "privacy"
+  ]
+}

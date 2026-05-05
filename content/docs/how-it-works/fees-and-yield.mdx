@@ -1,0 +1,51 @@
+---
+title: Fees & Yield
+description: Where APY comes from, how HWM works, and what fees you pay
+---
+
+<TLDR>
+Yield comes from three sources: lending interest (Blend), LP trading fees (Soroswap/Aquarius/Phoenix), and BLND emissions (Blend). High Water Mark tracks your best-ever value. No hidden fees — only network gas costs and a future performance fee (not yet active).
+</TLDR>
+
+## Where APY Comes From
+
+Tasmil's yield is not a fixed rate — it's the sum of actual DeFi protocol earnings:
+
+### Lending Interest (Blend)
+Your supply to a Blend lending pool earns interest from borrowers. The rate varies with utilization: when more people borrow, suppliers earn more. The engine reads the current supply APY from Blend's on-chain reserve data and updates your position APY on each sync (every 5 min).
+
+### LP Trading Fees (Soroswap, Aquarius, Phoenix)
+When you provide liquidity to a DEX pool, you earn a share of every trade that crosses the pool. The fee rate varies by protocol and pool. The engine estimates APY from trailing 7-day volume data (sourced from Soroswap API and Aquarius on-chain reads).
+
+### BLND Emissions (Blend)
+Blend distributes BLND tokens to suppliers as an incentive. The engine harvests these every 4 hours and re-deploys them into your vault. BLND emissions are protocol-level — they're added on top of lending interest, making Blend positions dual-yield.
+
+## High Water Mark (HWM)
+
+HWM is the highest total value your vault has ever reached. It matters for performance fees:
+
+* HWM resets only when you withdraw.
+* Performance fees (when enabled) apply only to returns **above** the HWM.
+* If your vault drops below HWM, no performance fee accrues until it exceeds HWM again.
+
+**Worked example:**
+
+| Event | Vault Value | HWM | Fee Applied? |
+|-------|------------|-----|-------------|
+| Deposit 1000 USDC | 1000 | 1000 | — |
+| Earn 100 USDC | 1100 | 1100 | Pool-level only (no Tasmil fee) |
+| Market dip | 1050 | 1100 | No Tasmil performance fee (below HWM) |
+| Recovery to 1150 | 1150 | 1150 | Fee applies to 50 USDC above prior HWM |
+
+## Your Costs
+
+### Today (Active)
+* **Network gas fees.** Every on-chain action (deposit, rebalance, withdraw, harvest) costs a small amount of XLM. These are Stellar network fees, not Tasmil fees. Typical rebalance: 0.001-0.005 XLM.
+* **Protocol fees.** Blend and Soroswap may take a small percentage of earnings. This is standard DeFi protocol behavior.
+
+### Future (Not Yet Active)
+* **Performance fee.** A small percentage of returns above HWM. This is the planned monetization — you pay only when the engine makes you money. Not yet active as of v1.
+
+<Callout type="info">
+Tasmil does not charge: deposit fees, withdrawal fees, inactivity fees, minimum balance fees, or subscription fees. The only current costs are Stellar network gas and standard protocol fees.
+</Callout>

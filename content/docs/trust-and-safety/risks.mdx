@@ -1,0 +1,44 @@
+---
+title: Risks
+description: Protocol risk, system safeguards, and honest unknowns
+---
+
+<TLDR>
+Every DeFi product carries risk. Tasmil's risks fall into three categories: protocol risk (the DeFi protocols we depend on), system risk (our own engine), and unknowns (external factors no one controls). This page is an honest accounting — not a disclaimer to skip.
+</TLDR>
+
+## Protocol Risk
+
+Tasmil deploys into third-party protocols. Each carries its own risk:
+
+| Protocol | Primary Risk | Mitigation |
+|----------|-------------|------------|
+| **Blend** | Smart contract exploit in lending pools | Blend is audited; Tasmil's strategy contracts only call known functions |
+| **Soroswap** | Impermanent loss in LP pools | Engine monitors IL; can rebalance away if IL exceeds thresholds |
+| **Aquarius** | Pool manipulation / oracle attacks | On-chain TVL reads bypass API-oracle risks |
+| **Phoenix** | Smart contract exploit in DEX pools | Phoenix is audited; limited allocation in all presets |
+
+**Protocol risk is not Tasmil-specific.** If Blend's contracts are exploited, anyone supplying to Blend — through Tasmil or directly — is affected. Tasmil cannot prevent third-party protocol exploits.
+
+## System Safeguards
+
+The rebalance engine has these automatic safety brakes:
+
+| Safeguard | What Triggers It | What Happens |
+|-----------|-----------------|-------------|
+| **3-failure halt** | 3 consecutive rebalance failures | Vault status -> HALTED. Manual review required to reactivate. |
+| **TVL-drop halt** | >15% drop in total vault value in one cycle | Same vault halted. Protects against cascading issues. |
+| **Daily rebalance cap** | 48 rebalances in 24 hours | No further rebalances until the counter resets. |
+| **Cooldown** | &lt;30 min since last rebalance | Engine waits. Prevents thrashing. |
+| **Deploy ratio** | Preset-defined (Safe: 50%, Balanced: 85%, Aggressive: 100%) | Cash buffer protects against withdrawal demand at less cost |
+
+## Honest Unknowns
+
+Some risks are external and unpredictable:
+
+* **Stellar network congestion.** During high traffic, transactions may take longer to confirm. The engine retries; if a transaction is stuck beyond the Soroban TTL, it expires and the engine picks up on the next cycle.
+* **USDC depeg.** If USDC loses its dollar peg, USD-denominated TVL is affected. Tasmil does not control USDC's stability.
+* **Bridge finality.** Cross-chain bridges (used by Aggregate) depend on external validators. Bridge failures are outside Tasmil's control.
+* **Regulatory risk.** Changes in DeFi regulation in relevant jurisdictions could affect protocol availability.
+
+**If you spot a vulnerability, report it:** see [Privacy & Disclosure](/docs/trust-and-safety/privacy).

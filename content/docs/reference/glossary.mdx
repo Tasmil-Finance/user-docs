@@ -1,0 +1,33 @@
+---
+title: Glossary
+description: Every Tasmil term defined — A to Z
+---
+
+| Term | Definition |
+|------|-----------|
+| **APY** | Annual Percentage Yield. The yearly return on a deposit, including compound effects. Displayed as a 7-day trailing average. |
+| **Base Asset** | The primary asset for your vault view — USDC or XLM. Controls which positions are emphasized and the denomination of TVL. |
+| **Blend** | A Stellar lending protocol. The only protocol used by the Safe preset because it has zero impermanent loss risk. |
+| **BLND** | Blend protocol's incentive token. Earned by supplying to Blend lending pools and harvested every 4 hours. |
+| **BPS** | Basis Points. 1 BPS = 0.01%. Used for weight caps, drift thresholds, and fee rates. |
+| **bToken** | Blend lending receipt token. Represents your supplied assets + accrued interest. Redeemable for the underlying asset. |
+| **Circuit Breaker** | An automatic safety mechanism that halts rebalancing after 3 consecutive failures or >15% TVL drop. |
+| **Cooldown** | The 30-minute minimum between rebalances. Prevents the engine from thrashing in volatile conditions. |
+| **Cron Job** | A scheduled server-side task. Tasmil has 4: pool discovery, position sync, rebalance, and harvest. |
+| **Deploy Ratio** | The percentage of vault funds deployed vs. held as a cash buffer. Varies by preset (Safe: 50%, Balanced: 85%, Aggressive: 100%). |
+| **Drift** | The difference between a pool's actual allocation and its target weight. Drift >5% triggers a rebalance. |
+| **HITL** | Human-in-the-Loop. The approval step where you review and sign every on-chain transaction proposed by an AI agent. |
+| **HWM** | High Water Mark. The highest total value your vault has ever reached. Used to determine eligibility for performance fees (when enabled). |
+| **Impermanent Loss** | The temporary loss in LP position value caused by asset price divergence. Only applies to DEX LP positions (Soroswap, Aquarius, Phoenix). |
+| **Keeper Wallet** | A Stellar custom-account contract that holds your vault funds and enforces session-key access controls. You are the owner; the bot is an authorized signer with limited scope. |
+| **LP Token** | Liquidity Provider token. Represents your share of a DEX pool. Received when depositing to Soroswap, Aquarius, or Phoenix. |
+| **Preset** | A risk profile (Safe / Balanced / Aggressive) that defines the pool set, weight caps, deploy ratio, and APY exponent for your vault. |
+| **Rebalance** | The process of reallocating vault funds to match target weights. Triggered when drift exceeds 5% and all safety checks pass. |
+| **Session Key** | A limited-scope signing key provisioned from your keeper wallet to the AI bot. Has rate limits, a cooldown, contract/function whitelists, and an expiry. |
+| **Soroban** | Stellar's smart-contract platform. All Tasmil contracts run on Soroban. |
+| **Strategy** | A Soroban smart contract that adapts generic vault operations (deposit, withdraw, harvest, balance) to a specific DeFi protocol. |
+| **Supervisor** | The AI routing agent that directs your chat message to the right specialist agent. |
+| **Trustline** | A Stellar ledger entry linking your account to an asset issuer. Required before you can hold a non-native asset (USDC, BLND, etc.). |
+| **TTL** | Time-to-Live. The duration Soroban contract data persists before it must be extended. Tasmil extends TTL automatically. |
+| **TVL** | Total Value Locked. The total USD value of funds in your vault (or across all vaults). |
+| **Vault** | Your personal keeper-wallet account on Stellar, managed by Tasmil's rebalance engine according to your chosen preset. |

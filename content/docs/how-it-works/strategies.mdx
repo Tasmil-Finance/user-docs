@@ -1,0 +1,74 @@
+---
+title: Strategies
+description: How the four protocol strategies work — Blend, Soroswap, Aquarius, Phoenix
+---
+
+<TLDR>
+Each protocol has a strategy contract on Stellar that adapts the generic deposit/withdraw/harvest/balance operations to protocol-specific mechanics. The engine picks which pool to use; the strategy knows how to interact with it on-chain.
+</TLDR>
+
+## What a Strategy Is
+
+A strategy is a Soroban smart contract that translates generic vault operations into protocol-specific calls. The strategy-trait interface requires: `deposit`, `withdraw`, `harvest`, `balance`, `asset`. Every strategy implements these five functions. The rebalance engine doesn't need to know Blend vs. Soroswap internals — it calls the same interface on every strategy.
+
+## Blend Strategy
+
+Blend is a lending protocol on Stellar. The Blend strategy:
+
+* **Supplies** USDC or XLM into a Blend lending pool in exchange for bTokens (which accrue interest over time).
+* **Withdraws** by redeeming bTokens for the underlying asset.
+* **Harvests** BLND emissions — protocol incentive tokens distributed to suppliers. The harvest cron claims them every 4 hours.
+* **Balance** reads the current bToken value, which includes accrued interest.
+
+**Key fact:** Blend lending has zero impermanent loss. It's the only protocol used by the Safe preset.
+
+**Strategy contract:** `strategy-blend-USDC` / `strategy-blend-XLM` (two instances — one per base asset).
+
+## Soroswap Strategy
+
+Soroswap is a Stellar DEX using an xy=k AMM model. The Soroswap strategy:
+
+* **Deposits** by splitting your USDC or XLM into two halves, swapping one half for the pair asset, and adding both as liquidity. Receives LP tokens.
+* **Withdraws** by redeeming LP tokens, then swapping the non-base-asset half back to the base. 97% slippage protection (3% max).
+* **Earns** from trading fees collected by the LP pool.
+
+**Key fact:** Soroswap involves impermanent loss. The engine monitors IL exposure through position sync and can rebalance away if IL grows.
+
+**Strategy contract:** `strategy-soroswap-USDC` / `strategy-soroswap-XLM`.
+
+## Aquarius Strategy
+
+Aquarius is a Stellar AMM. Similar mechanics to Soroswap with different pool types:
+
+* Connects to Aquarius pools via on-chain token balance reads (more accurate than API-based TVL estimation).
+* Used in Balanced and Aggressive presets for supplemental yield.
+
+**Strategy contract:** `strategy-aquarius-USDC` / `strategy-aquarius-XLM`.
+
+## Phoenix Strategy
+
+Phoenix is a newer Stellar DEX with liquidity pools:
+
+* Used in the Aggressive preset as a minor allocation for extra yield diversification.
+* Similar LP mechanics to Soroswap with different pool configurations.
+
+**Strategy contract:** `strategy-phoenix-USDC` / `strategy-phoenix-XLM`.
+
+## Pool Discovery
+
+The engine discovers which pools exist by:
+
+1. Querying Blend SDK for all lending pools and their APY/reserve data.
+2. Querying Soroswap API for LP pools, volumes, and estimated yields.
+3. Computing a risk score per pool (TVL depth, volume consistency, protocol track record).
+4. Persisting pools with a unique key: `(protocol, poolAddress, reserveIndex, assetSymbol)`.
+
+When a pool disappears or its APY drops below 0, the pool is evicted on the next discovery cycle.
+
+## Strategy vs. Pool
+
+A common confusion: **the strategy is the adapter; the pool is the venue.**
+
+Blend strategy -> Blend Fixed USDC pool. The strategy knows *how* to supply. The pool is *where* the funds go. One strategy can serve multiple pools (e.g., Blend Fixed USDC, Blend Variable USDC both use the Blend strategy). The engine picks the pool; the strategy handles the interaction.
+
+Read the contract addresses at [Trust & Safety > Audits & Addresses](/docs/trust-and-safety/audits-and-addresses).

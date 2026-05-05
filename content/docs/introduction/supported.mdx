@@ -1,0 +1,40 @@
+---
+title: Supported Assets & Protocols
+description: What you can deposit and where it earns yield
+---
+
+<TLDR>
+Tasmil supports two base assets (USDC and XLM) deployed across four DeFi protocols on Stellar. More assets and protocols are on the roadmap.
+</TLDR>
+
+![Supported protocols on Tasmil](/docs/introduction/protocols-overview.png)
+
+## Base Assets
+
+You can deposit either or both:
+
+| Asset | Network | What you can earn |
+|-------|---------|-------------------|
+| **USDC** | Stellar | Lending interest (Blend), LP fees (Soroswap/Aquarius/Phoenix), BLND emissions |
+| **XLM** | Stellar | Lending interest (Blend), LP fees (Soroswap/Aquarius/Phoenix), BLND emissions |
+
+Both assets use 7 decimal places on Stellar. When you fund both USDC and XLM, Tasmil deploys each into its own set of pools so you're earning across your whole portfolio.
+
+## Supported Protocols
+
+Tasmil's engine allocates across these four Stellar DeFi protocols:
+
+| Protocol | Type | How you earn | Safe preset | Balanced | Aggressive |
+|----------|------|--------------|-------------|----------|------------|
+| **Blend** | Lending | Supply interest + BLND emissions | Primary | Major | Moderate |
+| **Soroswap** | DEX LP | Trading fees | — | Moderate | Major |
+| **Aquarius** | AMM | Pool fees | — | Minor | Moderate |
+| **Phoenix** | DEX | Pool fees + incentives | — | — | Minor |
+
+Blend lending is the only protocol used by the **Safe** preset — it has zero impermanent loss risk. For higher potential returns, Balanced and Aggressive add DEX liquidity positions from Soroswap, Aquarius, and Phoenix.
+
+Read the full protocol breakdown in [How It Works > Strategies](/docs/how-it-works/strategies).
+
+## What's Coming
+
+Check the [Roadmap](/docs/reference/roadmap) for upcoming protocol and asset additions.

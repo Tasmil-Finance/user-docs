@@ -1,0 +1,12 @@
+{
+  "title": "How It Works",
+  "icon": "Cog",
+  "pages": [
+    "index",
+    "vaults-and-presets",
+    "strategies",
+    "rebalance-engine",
+    "ai-and-tools",
+    "fees-and-yield"
+  ]
+}

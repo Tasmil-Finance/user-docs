@@ -1,0 +1,49 @@
+---
+title: What the Bot Can Do
+description: Session-key capabilities, the bot's hard limits, and how to revoke access
+---
+
+<TLDR>
+The AI bot operates through session keys you authorize at vault creation. Each key has per-transaction and global rate limits, a 360-ledger cooldown, contract/function whitelists, and an expiry. The bot can deposit and withdraw within registered strategies. It cannot send to arbitrary addresses.
+</TLDR>
+
+## The Can / Cannot Table
+
+| The Bot CAN | The Bot CANNOT |
+|------------|----------------|
+| Deposit into registered strategy contracts | Transfer to an arbitrary wallet address |
+| Withdraw from strategy contracts back to your vault | Withdraw from your vault to a non-owner address |
+| Claim BLND emissions from Blend positions | Change your risk preset without your action |
+| Rebalance between strategy pools | Spend more than rate limits allow per transaction |
+| Sign with session key (limited scope) | Sign with your wallet key |
+| Deploy to pools discovered by the pool discovery cron | Deploy to pools not registered in the strategy registry |
+| Execute up to 48 rebalances per day | Bypass the 30-minute cooldown between rebalances |
+
+## How Session Keys Work
+
+When you create a vault, the keeper-wallet contract provisions one or more session keys for the bot:
+
+* **Rate limits.** Per-key limit (max XLM value per transaction) + global limit (max total value per day).
+* **Cooldown.** 360 ledgers (~5 minutes) between uses of the same session key. Prevents rapid-fire transactions.
+* **Whitelist.** Each session key is whitelisted to specific contract addresses (the strategy contracts) and specific functions (`deposit`, `withdraw`, `harvest`).
+* **Expiry.** Session keys have a fixed lifetime. They must be renewed before expiry or the bot loses signing authority.
+
+These limits are enforced by the Soroban host environment, not Tasmil servers. The keeper-wallet contract rejects transactions that violate them at the Stellar protocol level.
+
+## Revoking Access
+
+You can revoke the bot's session keys at any time:
+
+1. Open the app -> Farming -> Settings -> Session Keys.
+2. Click **Pause** (temporary — bot stops rebalancing, you can still withdraw).
+3. Or click **Revoke All Keys** (permanent — bot permanently loses signing authority).
+4. The keeper-wallet contract removes the keys from its authorized signers list.
+5. Confirmation appears on-ledger.
+
+**Pausing** means the bot stops making transactions. Your positions stay where they are. You can withdraw at any time — the keeper wallet always allows withdrawals by the owner key.
+
+**Revoking** is irreversible. To re-enable bot management, you'd need to provision a new session key from the app.
+
+<Callout type="info">
+If Tasmil's backend servers go offline, the bot cannot sign transactions, but your funds remain in your keeper wallet on-chain. You can withdraw directly by interacting with the contract via Stellar Explorer if needed — the owner key always has full withdrawal authority.
+</Callout>

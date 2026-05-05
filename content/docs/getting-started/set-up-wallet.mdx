@@ -1,0 +1,68 @@
+---
+title: Set Up Your Wallet
+description: Pick a Stellar wallet, install it, connect to Tasmil, and fund it
+---
+
+<TLDR>
+Pick Freighter, xBull, or Albedo. Install the browser extension. Connect it to Tasmil. Fund it with XLM (always needed for fees) and USDC if you're on mainnet. On testnet, use the faucet.
+</TLDR>
+
+![Wallet connection screen](/docs/getting-started/wallet-connect.png)
+
+## Pick a Wallet
+
+Tasmil supports three Stellar wallets via Stellar Wallets Kit:
+
+| Wallet | Type | Get it |
+|--------|------|--------|
+| **Freighter** | Browser extension | [freighter.app](https://freighter.app) — Chrome, Firefox |
+| **xBull** | Browser extension + mobile | [xbull.app](https://xbull.app) |
+| **Albedo** | Web-based | [albedo.link](https://albedo.link) |
+
+New to Stellar? **Start with Freighter.** It's the most widely used and simplest to set up.
+
+<Callout type="info">
+You need a small XLM balance in your wallet before connecting. Stellar requires a 1 XLM minimum balance per account plus ~0.5 XLM for transaction fees during vault creation.
+</Callout>
+
+## Install and Fund
+
+**On mainnet:**
+1. Install Freighter (or xBull/Albedo) from the extension store.
+2. Create a new wallet or import an existing one.
+3. Fund it with XLM and USDC. On-ramp options: Coinbase, Binance, or Stellar's built-in on-ramp partners.
+4. Leave ~5 XLM as reserve for account creation + transaction fees.
+
+**On testnet:**
+1. Install Freighter and switch it to testnet mode (settings > network > testnet).
+2. Create a testnet wallet.
+3. Copy your public key and paste it into Friendbot: [stellar.org/laboratory](https://laboratory.stellar.org/#account-creator?network=test).
+4. Friendbot sends 10,000 test XLM. You can also request test USDC from the Stellar Quest faucet.
+
+## Connect to Tasmil
+
+<Steps>
+  <Step>
+    Go to [app.tasmil-finance.xyz](https://app.tasmil-finance.xyz) and click **Connect Wallet** in the top-right corner.
+  </Step>
+  <Step>
+    Select your wallet from the list (Freighter, xBull, or Albedo). Your wallet extension will prompt you to approve the connection.
+  </Step>
+  <Step>
+    Approve. The app displays your truncated public key.
+  </Step>
+</Steps>
+
+![Connected wallet state](/docs/getting-started/wallet-connected.png)
+
+<Callout type="info">
+Tasmil Finance never requests your secret key. All transaction signing happens inside your wallet extension.
+</Callout>
+
+## Testnet vs Mainnet
+
+Tasmil supports both networks. New users should start on testnet — it uses fake tokens, costs nothing, and lets you try every feature before committing real funds. Switch networks in your wallet's settings, then refresh the app.
+
+## Next Step
+
+Wallet ready? [Create your first vault](/docs/getting-started/create-and-fund-vault).

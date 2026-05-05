@@ -1,0 +1,52 @@
+---
+title: Vaults & Presets
+description: Vault lifecycle, base assets, and the Safe/Balanced/Aggressive preset knobs
+---
+
+<TLDR>
+Each vault is a keeper-wallet account on Stellar with a risk preset that defines the pool set, weight caps, and rebalance behavior. Vaults go through DEPLOYING -> AWAITING_FUND -> ACTIVE -> HALTED/REVOKED states.
+</TLDR>
+
+![Vault lifecycle diagram](/docs/how-it-works/vault-lifecycle.png)
+
+## Vault Lifecycle
+
+| State | What It Means | What You Can Do |
+|-------|-------------|-----------------|
+| **DEPLOYING** | Keeper-wallet contract being created on Stellar | Wait. ~30-60 seconds. |
+| **AWAITING_FUND** | Contract deployed, no funds yet | Fund USDC or XLM |
+| **ACTIVE** | Funded, engine deploying | Everything: deposit, withdraw, rebalance, chat |
+| **HALTED** | Safety pause (bot, admin, or automatic) | Withdraw only. No new deployments. |
+| **REVOKED** | Permanently closed | Withdraw only. Cannot re-activate. |
+
+Vaults auto-halt after 3 consecutive rebalance failures or a >15% TVL drop. Read [Trust & Safety > What the Bot Can Do](/docs/trust-and-safety/what-the-bot-can-do).
+
+## Base Assets
+
+Your vault can hold USDC, XLM, or both. Each asset manages its own pool set — USDC pools and XLM pools never mix. The base asset auto-aligns on first deposit.
+
+## How Presets Actually Work
+
+Each preset maps to different numerical knobs:
+
+| Knob | Safe | Balanced | Aggressive |
+|------|------|----------|------------|
+| **Max weight per pool** (basis points) | 8000 (80%) | 5000 (50%) | 3500 (35%) |
+| **Min weight per pool** (basis points) | 1000 (10%) | 500 (5%) | 0 |
+| **Max per protocol** (basis points) | 10000 (100% — Blend only) | 7000 (70%) | 5000 (50%) |
+| **APY exponent** | Linear (1.0) | Squared (2.0) | Cubic (3.0) |
+| **Deploy ratio** | 50% (keeps cash buffer) | 85% | 100% |
+
+**What these mean in practice:**
+
+* **Max weight per pool** limits how concentrated your funds can get. Safe allows Blend to hold 80% of your vault; Aggressive caps any single pool at 35%.
+* **APY exponent** shapes how aggressively the engine tilts toward the highest-APY pool. Cubic (Aggressive) means the top pool dominates the weight calculation; linear (Safe) spreads more evenly.
+* **Deploy ratio** is the percentage of your vault deployed vs. held as a cash buffer. Safe keeps 50% idle as a buffer against withdrawal demand; Aggressive deploys 100%.
+
+## Changing Presets
+
+You can change your preset at any time from the Farming settings. The rebalance engine detects the change and initiates a full rebalance to the new pool set on the next 10-minute cycle.
+
+<Callout type="info">
+Switching presets mid-cycle is a rebalance event. It counts toward the 48-rebalance/day cap and respects the 30-minute cooldown.
+</Callout>

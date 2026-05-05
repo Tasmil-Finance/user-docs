@@ -1,0 +1,51 @@
+---
+title: Audits & Addresses
+description: Audit status, contract addresses, and how to verify on-chain transactions
+---
+
+<TLDR>
+All strategy contracts and the keeper-wallet contract are deployed on Stellar mainnet. Addresses are listed below. An external audit is in progress — this page will be updated with results when complete.
+</TLDR>
+
+## Audit Status
+
+An external smart-contract audit of the keeper-wallet and strategy contracts is planned. Scope: keeper-wallet session-key model, strategy trait compliance, deposit/withdraw correctness, and access-control enforcement.
+
+This page will be updated with the audit report when available.
+
+<Callout type="info">
+Until an external audit is published, these contracts are production-deployed on mainnet but have not undergone third-party security review. Use at your own risk, as with all unaudited DeFi protocols.
+</Callout>
+
+## Contract Addresses (Mainnet)
+
+All contracts are deployed on Stellar mainnet. Verify addresses on [Stellar Expert](https://stellar.expert) by pasting the contract ID.
+
+| Contract | Address |
+|----------|---------|
+| strategy-registry | `CBOIQ3UUIPJRIUFEX6DI3FZ2LOELW74YJO3OC4KNEZD3YJNLDCKG33TQ` |
+| strategy-blend-USDC | `CDF37Z2B5JDF5UB3I3Y3COFTH3I3JF3ECKKIXDZBOUAVEO7LN5LH2SXN` |
+| strategy-blend-XLM | `CDITBCJV22JTYF7CXO443HJYOSXQCMJ45Z3MDWDVNPKLTO2MXWMYAUUJ` |
+| strategy-soroswap-USDC | `CA4NOB3SE3FAPPIY5FVRRYNEQFY6F7BBGPLQZRTLEKDZK57DLMRPBWRE` |
+| strategy-soroswap-XLM | `CCVSVSUAD3NWYGFSRBC5EXKDYLPOSF4VCUJMOIWM74IYH4UBGUXG6JJW` |
+| strategy-aquarius-USDC | `CAR7JB66FA3HPKKME5V73F6E2OWB2XFD36NHGE6YWN63D3JHI2ZHIVES` |
+| strategy-aquarius-XLM | `CCOYCEAFEET7PCDDSKJ3XWR7HUCVE6ZJFDIPCH4YTRKV5TE6L6D4J46S` |
+
+<Callout type="warn">
+Contract addresses are sourced from `apps/backend/.env` at build time. If addresses have rotated since the last deploy, this list may be stale. Always verify on-chain before sending funds.
+</Callout>
+
+## How to Verify a Transaction
+
+Every Tasmil transaction is on the public Stellar ledger. To verify a rebalance or deposit:
+
+1. Find your vault's public key in Portfolio -> header.
+2. Copy the key.
+3. Go to [stellar.expert](https://stellar.expert) and paste the key.
+4. View all transactions for your vault, with decoded operation details.
+
+You can also look up any strategy contract by its address (above) to see all interactions across all vaults.
+
+## Bug Bounty
+
+If you discover a security vulnerability, report it to the Tasmil team. See [Privacy & Disclosure](/docs/trust-and-safety/privacy) for the responsible-disclosure process.

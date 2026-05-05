@@ -1,0 +1,242 @@
+---
+title: Troubleshooting
+description: Common issues and step-by-step fixes for vault deployment, transactions, wallet, bridge, and more
+---
+
+<TLDR>
+Quick fixes for the most common issues. Each entry has: what you see, why it happens, and exactly how to fix it.
+</TLDR>
+
+## Quick Reference
+
+| Symptom | Likely Cause | Jump to |
+|---------|-------------|---------|
+| Vault won't deploy | Insufficient XLM | [Fix](#my-vault-isnt-deploying) |
+| Transaction failed | Slippage or timeout | [Fix](#transaction-failed) |
+| Engine stopped | 3 consecutive failures | [Fix](#rebalance-engine-stopped) |
+| Wallet won't connect | Extension/network issue | [Fix](#wallet-wont-connect) |
+| Bridge stuck | Finality delay | [Fix](#bridge-transfer-stuck) |
+| Health factor warning | Near liquidation | [Fix](#health-factor-warning) |
+
+---
+
+## My Vault Isn't Deploying
+
+**What you see:** You clicked "Create Vault" but the interface stays on a loading state, or you get an error like "insufficient balance" or "transaction failed."
+
+**Why it happens:** Deploying a keeper-wallet contract on Stellar requires XLM for:
+- Account creation reserve (1 XLM minimum)
+- Contract deployment gas (~2-4 XLM)
+- Trustline setup (~0.5 XLM per asset)
+
+Total needed: **~5-7 XLM** in your wallet at deployment time.
+
+**How to fix:**
+
+<Steps>
+  <Step>
+    **Check your XLM balance.** Open your wallet (Freighter/xBull) and verify you have at least 7 XLM available (not locked in reserves).
+  </Step>
+  <Step>
+    **If balance is low, fund your wallet.** On testnet: use [Friendbot](https://laboratory.stellar.org/#account-creator?network=test). On mainnet: send XLM from an exchange or another wallet.
+  </Step>
+  <Step>
+    **Wait 60 seconds and retry.** If the previous attempt timed out, the network may have been congested. Refresh the page and click "Create Vault" again.
+  </Step>
+  <Step>
+    **Check network status.** If Stellar is experiencing high load, transactions may take longer. Check [status.stellar.org](https://status.stellar.org) for network health.
+  </Step>
+</Steps>
+
+<Callout type="info">
+If deployment succeeds but the UI doesn't update, try refreshing the page. The vault may have deployed successfully while the frontend lost the response.
+</Callout>
+
+---
+
+## Transaction Failed
+
+**What you see:** You approved a transaction in your wallet but got an error like "transaction failed," "simulation failed," or "op_underfunded."
+
+**Why it happens:**
+- **Slippage exceeded** — price moved between quote and execution (common on swaps)
+- **Transaction expired** — you took too long to sign and the transaction's time bounds expired
+- **Insufficient balance** — you don't have enough of the token (including gas reserves)
+- **Simulation failure** — the Soroban contract simulation predicted the transaction would fail
+
+**How to fix:**
+
+<Steps>
+  <Step>
+    **Check the error message.** The approval card or chat agent usually shows a specific reason. Common ones:
+    - `op_underfunded` → not enough balance
+    - `tx_too_late` → transaction expired, retry
+    - `simulation failed` → contract rejected the operation
+  </Step>
+  <Step>
+    **For slippage errors: retry immediately.** The price moved. Try the same operation again — the new quote will reflect current prices.
+  </Step>
+  <Step>
+    **For expired transactions: sign faster.** When the approval card appears, sign within 30 seconds. If you need more time to review, ask the agent to rebuild the transaction.
+  </Step>
+  <Step>
+    **For balance errors: check reserves.** Stellar locks ~1 XLM per trustline + 1 XLM base reserve. Your "available" balance is less than your total balance. Ensure you have enough *available* XLM for gas.
+  </Step>
+  <Step>
+    **For persistent failures: ask the Info agent.** Type "Why did my last transaction fail?" in chat — the agent can look up the error details.
+  </Step>
+</Steps>
+
+<Callout type="warn">
+If a swap fails due to slippage, your funds are safe — nothing was deducted. Failed transactions on Stellar still cost a tiny fee (~0.00001 XLM) but your principal is untouched.
+</Callout>
+
+---
+
+## Rebalance Engine Stopped
+
+**What you see:** Your Smart Wallet positions haven't changed in hours, or the Farming dashboard shows "Engine Halted" status.
+
+**Why it happens:** The rebalance engine automatically halts after **3 consecutive transaction failures** as a safety mechanism. This prevents repeated failed transactions from burning gas on a systemic issue.
+
+**How to fix:**
+
+<Steps>
+  <Step>
+    **Check engine status.** Go to Farming → Smart Wallet. Look for a status indicator showing "Halted" or "Paused."
+  </Step>
+  <Step>
+    **Review what failed.** The activity log shows the last 3 failed transactions with error reasons. Common causes:
+    - Pool liquidity dried up (protocol issue)
+    - Network congestion (temporary)
+    - Contract upgrade changed interface (rare)
+  </Step>
+  <Step>
+    **Resume the engine.** Click "Resume" on the Farming dashboard. The engine will attempt the next rebalance cycle within 10 minutes.
+  </Step>
+  <Step>
+    **If it halts again immediately:** the underlying issue persists. Consider:
+    - Switching to a different preset (avoids the problematic pool)
+    - Withdrawing and re-depositing after the issue resolves
+    - Asking in chat: "Why is my rebalance engine failing?"
+  </Step>
+</Steps>
+
+<Callout type="info">
+The engine also has a circuit breaker that triggers on a greater than 15% TVL drop in a single cycle. This is a separate safety mechanism — if triggered, it means market conditions changed dramatically. Review your positions before resuming.
+</Callout>
+
+---
+
+## Wallet Won't Connect
+
+**What you see:** Clicking "Connect Wallet" does nothing, shows an error, or the wallet list is empty.
+
+**Why it happens:**
+- Wallet extension not installed or disabled
+- Browser blocking the extension popup
+- Wrong network selected (testnet vs mainnet mismatch)
+- Extension needs update
+
+**How to fix:**
+
+<Steps>
+  <Step>
+    **Verify the extension is installed.** Check your browser's extension toolbar for the Freighter/xBull icon. If missing, install from [freighter.app](https://freighter.app) or [xbull.app](https://xbull.app).
+  </Step>
+  <Step>
+    **Check the extension is unlocked.** Click the extension icon — if it asks for a password, unlock it first, then retry connecting.
+  </Step>
+  <Step>
+    **Verify network matches.** Open your wallet extension settings and check which network is selected:
+    - If the app is on **mainnet**, your wallet must be on **Public (mainnet)**
+    - If the app is on **testnet**, your wallet must be on **Testnet**
+  </Step>
+  <Step>
+    **Allow popups.** Some browsers block extension popups. Check your browser's popup blocker settings and allow popups from the Tasmil domain.
+  </Step>
+  <Step>
+    **Hard refresh.** Press `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows) to clear cache and reload.
+  </Step>
+  <Step>
+    **Try a different browser.** If nothing works, try Chrome (most compatible with Freighter). Firefox and Brave occasionally have extension conflicts.
+  </Step>
+</Steps>
+
+---
+
+## Bridge Transfer Stuck
+
+**What you see:** You initiated a bridge transfer but assets haven't arrived on the destination chain after the estimated time.
+
+**Why it happens:**
+- Destination chain congestion (Ethereum can be slow during high gas periods)
+- Bridge relayer processing delay
+- Transaction is still within normal finality window (some chains take 15+ minutes)
+
+**How to fix:**
+
+<Steps>
+  <Step>
+    **Check the estimated time.** Different chains have different finality:
+    - Ethereum: up to 15 minutes
+    - Arbitrum/Base: up to 5 minutes
+    - Solana: up to 3 minutes
+
+    If you're within this window, wait.
+  </Step>
+  <Step>
+    **Check transfer status in chat.** Ask: "What's the status of my bridge transfer?" The agent checks Allbridge's status API.
+  </Step>
+  <Step>
+    **Check the destination chain explorer.** Search your destination address on the relevant block explorer (Etherscan, Arbiscan, etc.) to see if the transaction arrived but the UI hasn't updated.
+  </Step>
+  <Step>
+    **Wait up to 30 minutes.** During network congestion, transfers can take longer than estimated. Allbridge processes in order — your transfer is queued.
+  </Step>
+  <Step>
+    **If over 30 minutes: contact support.** This is rare but can happen if the bridge relayer is down. Check [Allbridge status](https://allbridge.io) or reach out via the app's support channel.
+  </Step>
+</Steps>
+
+<Callout type="warn">
+Do NOT initiate a second bridge transfer for the same amount thinking the first one failed. You may end up with duplicate transfers. Always verify the first one's status before retrying.
+</Callout>
+
+---
+
+## Health Factor Warning
+
+**What you see:** A warning in your Portfolio or a chat message saying your health factor is approaching 1.0 on Blend.
+
+**Why it happens:** Your collateral value dropped (or your debt value increased) relative to your borrowed amount. If health factor reaches 1.0, your collateral can be liquidated.
+
+**How to fix:**
+
+<Steps>
+  <Step>
+    **Check your current health factor.** Ask in chat: "What's my Blend health factor?" or check the Portfolio positions view.
+  </Step>
+  <Step>
+    **Option A: Repay some debt.** The fastest fix. Type: "Repay 50% of my Blend debt" — this immediately improves your health factor.
+  </Step>
+  <Step>
+    **Option B: Add more collateral.** Type: "Supply 100 USDC to Blend as collateral" — this increases your collateral value.
+  </Step>
+  <Step>
+    **Option C: Withdraw and close.** If you want to exit entirely: "Repay all my Blend debt" then "Withdraw all from Blend."
+  </Step>
+</Steps>
+
+**Health factor guide:**
+
+| Health Factor | Status | Action |
+|---------------|--------|--------|
+| Above 2.0 | Safe | No action needed |
+| 1.5 – 2.0 | Moderate | Monitor, consider reducing debt |
+| 1.0 – 1.5 | Warning | Act now — repay or add collateral |
+| Below 1.0 | Liquidation risk | Immediate action required |
+
+<Callout type="warn">
+Liquidation is irreversible. If your health factor drops below 1.0, a portion of your collateral is sold to repay your debt automatically. You lose the liquidation penalty (typically 5-10% of the liquidated amount).
+</Callout>
