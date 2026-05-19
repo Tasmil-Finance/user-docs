@@ -1,0 +1,38 @@
+---
+title: Aggregate
+description: Swap tokens and bridge assets across chains — one surface, best route picked
+---
+
+<TLDR>
+Aggregate combines swap and bridge into one surface. Swap USDC ↔ XLM via SDEX or Soroswap routing. Bridge assets between Stellar and other chains via Allbridge. The aggregator picks the optimal route based on price, slippage, and speed.
+</TLDR>
+
+## Two Actions, One Surface
+
+| Action | What it does | When to use |
+|--------|-------------|-------------|
+| **[Swap](/docs/using-the-app/aggregate/swap)** | Exchange USDC ↔ XLM (or other pairs) at best rate | You want to trade tokens on Stellar |
+| **[Bridge](/docs/using-the-app/aggregate/bridge)** | Move assets from Stellar to another chain | You need tokens on Ethereum, Arbitrum, etc. |
+
+<StepScreenshot
+  src="/docs/using-the-app/aggregate/aggregate-interface.png"
+  alt="Aggregate interface with Swap and Bridge tabs"
+  caption="The Aggregate surface with Swap (left) and Bridge (right) tabs"
+/>
+
+## How Routing Works
+
+When you swap, the aggregator automatically:
+1. Checks SDEX orderbook depth for the pair
+2. Checks Soroswap pool liquidity for the same pair
+3. Picks the route with least slippage and lowest effective price impact
+4. Shows you a quote before you confirm
+
+For bridges, it finds the Allbridge route with the lowest fee and shortest estimated finality time.
+
+## Quick Start
+
+<Cards>
+  <Card title="Swap Guide" href="/docs/using-the-app/aggregate/swap" description="Step-by-step: exchange tokens at best rate" />
+  <Card title="Bridge Guide" href="/docs/using-the-app/aggregate/bridge" description="Step-by-step: move assets cross-chain" />
+</Cards>

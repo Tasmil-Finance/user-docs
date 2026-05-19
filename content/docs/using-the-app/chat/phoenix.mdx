@@ -1,0 +1,121 @@
+---
+title: Phoenix
+description: Swap tokens and provide liquidity on Phoenix DEX
+---
+
+<TLDR>
+The Phoenix agent handles DEX operations on Phoenix protocol. Execute token swaps with competitive rates, provide liquidity to earn fees, and manage your LP positions.
+</TLDR>
+
+## Supported Operations
+
+| Operation | What it does | Example prompt |
+|-----------|-------------|----------------|
+| **Swap** | Exchange tokens via Phoenix DEX | "Swap 50 USDC to XLM on Phoenix" |
+| **Add Liquidity** | Provide tokens to a Phoenix pool | "Add 100 USDC to Phoenix USDC/XLM pool" |
+| **Remove Liquidity** | Withdraw your LP position | "Remove my Phoenix LP" |
+| **Check Position** | View your Phoenix LP status | "What's my Phoenix position?" |
+
+---
+
+## Swap on Phoenix
+
+<Steps>
+  <Step>
+    **Type your swap request.** Example: "Swap 50 USDC to XLM on Phoenix"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/phoenix/step-1-swap-prompt.png"
+      alt="Phoenix swap request"
+      step={1}
+      caption="Specify amount and token pair"
+    />
+  </Step>
+  <Step>
+    **Review the quote.** The agent shows expected output, price impact, and fees.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/phoenix/step-2-swap-quote.png"
+      alt="Phoenix swap quote"
+      step={2}
+      caption="Review the exchange rate before confirming"
+    />
+  </Step>
+  <Step>
+    **Approve and sign.** Confirm the transaction in your wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/phoenix/step-3-swap-confirmed.png"
+      alt="Phoenix swap confirmed"
+      step={3}
+      caption="Swap executed successfully"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Provide Liquidity
+
+<Steps>
+  <Step>
+    **Type your LP request.** Example: "Add 100 USDC to the Phoenix USDC/XLM pool"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/phoenix/step-1-lp-prompt.png"
+      alt="Phoenix LP request"
+      step={1}
+      caption="Specify the deposit amount and pool"
+    />
+  </Step>
+  <Step>
+    **Review pool details.** See current APY, your expected share, and token requirements.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/phoenix/step-2-lp-details.png"
+      alt="Phoenix pool details"
+      step={2}
+      caption="Review pool APY and your expected share"
+    />
+  </Step>
+  <Step>
+    **Approve and confirm.** Sign the transaction to deposit.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/phoenix/step-3-lp-confirmed.png"
+      alt="Phoenix LP confirmed"
+      step={3}
+      caption="Liquidity provided — now earning trading fees"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Remove Liquidity
+
+<Steps>
+  <Step>
+    **Request withdrawal.** Example: "Remove my Phoenix USDC/XLM LP"
+  </Step>
+  <Step>
+    **Review and approve.** See the tokens you'll receive, then sign.
+  </Step>
+  <Step>
+    **Tokens returned.** Both assets arrive back in your wallet.
+  </Step>
+</Steps>
+
+---
+
+## Check Position
+
+**Example prompts:**
+- "What's my Phoenix position?"
+- "How much am I earning on Phoenix?"
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/phoenix/position-overview.png"
+  alt="Phoenix position overview"
+  caption="View your LP shares and accumulated fees"
+/>

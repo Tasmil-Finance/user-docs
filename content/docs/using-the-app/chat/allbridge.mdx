@@ -1,0 +1,119 @@
+---
+title: Allbridge (Cross-Chain Bridge)
+description: Bridge assets between Stellar and other chains via Allbridge
+---
+
+<TLDR>
+The Allbridge agent handles cross-chain bridging. Move USDC, XLM, or other supported assets between Stellar and Ethereum, Arbitrum, Base, Solana, and more. The agent finds the optimal route with lowest fees and fastest finality.
+</TLDR>
+
+## Supported Operations
+
+| Operation | What it does | Example prompt |
+|-----------|-------------|----------------|
+| **Bridge Out** | Send assets from Stellar to another chain | "Bridge 100 USDC from Stellar to Ethereum" |
+| **Bridge In** | Receive assets from another chain to Stellar | "Bridge 50 USDC from Arbitrum to Stellar" |
+| **Check Routes** | Compare bridge routes and fees | "What's the cheapest way to bridge USDC to Ethereum?" |
+| **Check Status** | Track a pending bridge transfer | "What's the status of my bridge transfer?" |
+
+## Supported Chains
+
+| Chain | Assets | Estimated Time |
+|-------|--------|----------------|
+| Ethereum | USDC, USDT | ~15 min |
+| Arbitrum | USDC | ~5 min |
+| Base | USDC | ~5 min |
+| Solana | USDC | ~3 min |
+| BNB Chain | USDC, USDT | ~5 min |
+
+---
+
+## Bridge Assets Out (Stellar → Other Chain)
+
+<Steps>
+  <Step>
+    **Type your bridge request.** Example: "Bridge 100 USDC from Stellar to Ethereum"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/allbridge/step-1-bridge-prompt.png"
+      alt="Bridge request"
+      step={1}
+      caption="Specify amount, asset, and destination chain"
+    />
+  </Step>
+  <Step>
+    **Review the route.** The agent shows: bridge fee, estimated time, destination address, and minimum received.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/allbridge/step-2-bridge-route.png"
+      alt="Bridge route details"
+      step={2}
+      caption="Review fees, estimated time, and destination details"
+    />
+  </Step>
+  <Step>
+    **Provide destination address.** Enter your wallet address on the destination chain.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/allbridge/step-3-bridge-address.png"
+      alt="Enter destination address"
+      step={3}
+      caption="Paste your wallet address on the destination chain"
+    />
+  </Step>
+  <Step>
+    **Approve the bridge transaction.** Sign in your Stellar wallet to initiate the transfer.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/allbridge/step-4-bridge-approval.png"
+      alt="Bridge approval card"
+      step={4}
+      caption="Approve the bridge initiation transaction"
+    />
+  </Step>
+  <Step>
+    **Track the transfer.** The agent confirms initiation and provides a tracking link. Assets arrive on the destination chain after the estimated time.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/allbridge/step-5-bridge-tracking.png"
+      alt="Bridge transfer tracking"
+      step={5}
+      caption="Track your transfer until it arrives on the destination chain"
+    />
+  </Step>
+</Steps>
+
+<Callout type="info">
+Bridge transfers are irreversible once initiated. Double-check the destination address and chain before approving.
+</Callout>
+
+---
+
+## Compare Routes
+
+Ask the agent to find the best route before bridging:
+
+**Example prompts:**
+- "What's the cheapest way to bridge USDC from Stellar to Arbitrum?"
+- "Compare bridge fees for 500 USDC to Ethereum vs Arbitrum"
+- "How long does it take to bridge to Solana?"
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/allbridge/route-comparison.png"
+  alt="Route comparison"
+  caption="Compare fees and times across different destination chains"
+/>
+
+---
+
+## Check Transfer Status
+
+**Example prompts:**
+- "What's the status of my bridge transfer?"
+- "Has my USDC arrived on Ethereum yet?"
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/allbridge/transfer-status.png"
+  alt="Transfer status"
+  caption="Track pending bridge transfers"
+/>

@@ -1,0 +1,109 @@
+---
+title: Research & Yield
+description: Market data, yield comparisons, risk analysis, and protocol information
+---
+
+<TLDR>
+The Research, Yield, and Info agents are read-only — they never execute transactions. Use them to compare APYs across protocols, analyze market data, assess risk, get token fundamentals, and navigate the app.
+</TLDR>
+
+## Research Agent
+
+Provides market data, protocol comparisons, and token fundamentals.
+
+### What You Can Ask
+
+| Category | Example prompts |
+|----------|----------------|
+| **Protocol Comparison** | "Compare Blend APR with Soroswap LP fees" |
+| **Market Data** | "What's the current XLM price?" |
+| **Token Info** | "Tell me about the BLND token" |
+| **Pool Analysis** | "Which USDC pools have the highest TVL?" |
+| **Risk Assessment** | "What's the risk score for the Blend Fixed pool?" |
+
+<Steps>
+  <Step>
+    **Ask your research question.** Example: "Compare yields across all Stellar protocols for USDC"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/research/step-1-research-prompt.png"
+      alt="Research question"
+      step={1}
+      caption="Ask any market or protocol question"
+    />
+  </Step>
+  <Step>
+    **Get detailed analysis.** The agent responds with data tables, comparisons, and recommendations.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/research/step-2-research-response.png"
+      alt="Research response with data"
+      step={2}
+      caption="Detailed analysis with current data — no signature required"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Yield Agent
+
+Powered by DeFiLlama data — finds the best yield opportunities across chains.
+
+### What You Can Ask
+
+| Category | Example prompts |
+|----------|----------------|
+| **Top Yields** | "Show top yielding pools on Stellar" |
+| **Stablecoin Yields** | "What's the highest stablecoin yield right now?" |
+| **APY Trends** | "What's the 7-day APY trend for Blend USDC?" |
+| **Cross-Chain** | "Compare Stellar yields with Ethereum DeFi" |
+| **Yield Strategies** | "What's the best strategy for 1000 USDC?" |
+
+<Steps>
+  <Step>
+    **Ask about yields.** Example: "Show me the top 5 yielding pools on Stellar right now"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/research/step-1-yield-prompt.png"
+      alt="Yield question"
+      step={1}
+      caption="Ask about yield opportunities"
+    />
+  </Step>
+  <Step>
+    **Get ranked results.** The agent shows pools sorted by APY with risk indicators.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/research/step-2-yield-response.png"
+      alt="Yield rankings"
+      step={2}
+      caption="Pools ranked by APY with risk scores"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Info Agent
+
+General Q&A about the app, navigation help, and product guidance.
+
+### What You Can Ask
+
+| Category | Example prompts |
+|----------|----------------|
+| **Navigation** | "How do I change my preset?" |
+| **Features** | "What's the difference between Deposit and Smart Wallet mode?" |
+| **Account** | "Where do I find my transaction history?" |
+| **Troubleshooting** | "Why is my vault not deploying?" |
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/research/info-response.png"
+  alt="Info agent response"
+  caption="Get instant answers about app features and navigation"
+/>
+
+<Callout type="info">
+Research, Yield, and Info agents are completely read-only. They never propose transactions or require wallet signatures. Ask freely without any risk.
+</Callout>

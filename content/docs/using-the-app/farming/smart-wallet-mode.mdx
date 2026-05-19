@@ -1,0 +1,144 @@
+---
+title: Smart Wallet Mode
+description: AI auto-manages your yield — picks pools, rebalances, and harvests rewards
+---
+
+<TLDR>
+Smart Wallet mode is fully automated. You pick a risk preset (Safe, Balanced, Aggressive), fund your vault, and the AI engine handles everything — pool selection, rebalancing, and reward harvesting. The engine runs every 10 minutes.
+</TLDR>
+
+## Step-by-Step: Set Up Smart Wallet
+
+<Steps>
+  <Step>
+    **Navigate to Farming → Smart Wallet tab.** Click Farming in the sidebar, then select the "Smart Wallet" mode tab.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-1-navigate.png"
+      alt="Smart Wallet tab"
+      step={1}
+      caption="Select Smart Wallet mode"
+    />
+  </Step>
+  <Step>
+    **Choose your risk preset.** Three options:
+    - **Safe** — Blend lending only, no impermanent loss, lower but steady APY
+    - **Balanced** — Blend + Soroswap, moderate risk, medium APY
+    - **Aggressive** — Blend + Soroswap + Aquarius, higher risk, higher APY
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-2-pick-preset.png"
+      alt="Preset picker"
+      step={2}
+      caption="Compare presets and pick your risk level"
+    />
+  </Step>
+  <Step>
+    **Deploy your keeper wallet** (first time only). Click "Create Vault" — this deploys your personal smart contract on Stellar. Sign the transaction in your wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-3-deploy-vault.png"
+      alt="Deploy keeper wallet"
+      step={3}
+      caption="One-time vault deployment — sign in your wallet"
+    />
+  </Step>
+  <Step>
+    **Wait for deployment confirmation.** Takes 30-60 seconds. The interface shows a loading state, then confirms with your vault address.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-4-deployment-confirmed.png"
+      alt="Vault deployed"
+      step={4}
+      caption="Your keeper wallet is now live on Stellar"
+    />
+  </Step>
+  <Step>
+    **Fund your vault.** Enter the amount of USDC or XLM to deposit. Minimum effective deposit: ~50 USDC.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-5-fund-amount.png"
+      alt="Enter fund amount"
+      step={5}
+      caption="Enter the amount to deposit into your vault"
+    />
+  </Step>
+  <Step>
+    **Approve the fund transaction.** Sign in your wallet to transfer assets to your keeper wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-6-fund-approve.png"
+      alt="Fund approval"
+      step={6}
+      caption="Approve the deposit transaction"
+    />
+  </Step>
+  <Step>
+    **Engine starts working.** Within 10 minutes, the rebalance engine detects your deposit and deploys it into pools matching your preset. You'll see positions appear in the dashboard.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-7-engine-working.png"
+      alt="Engine deploying funds"
+      step={7}
+      caption="The AI engine deploys your funds into optimal pools"
+    />
+  </Step>
+</Steps>
+
+## What the Engine Does Automatically
+
+| Action | Frequency | What happens |
+|--------|-----------|-------------|
+| Pool Discovery | Every 20 min | Finds new pools, computes risk scores |
+| Allocation | Every 10 min | Computes target weights, detects drift, rebalances |
+| Position Sync | Every 5 min | Reads on-chain balances, updates dashboard |
+| Harvest | Every 4 hours | Claims BLND emissions from lending positions |
+
+## Changing Your Preset
+
+You can switch presets at any time:
+
+<Steps>
+  <Step>
+    **Go to Farming → Smart Wallet.** Click the "Change Preset" button.
+  </Step>
+  <Step>
+    **Select new preset.** The engine will gradually rebalance to the new allocation over the next few cycles.
+  </Step>
+</Steps>
+
+<Callout type="info">
+Changing presets doesn't trigger an immediate full rebalance. The engine adjusts gradually over 2-3 cycles to minimize transaction costs.
+</Callout>
+
+## Withdrawing
+
+<Steps>
+  <Step>
+    **Click "Withdraw" on the Farming page.** Enter the amount (or "Max" for full withdrawal).
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-1-withdraw.png"
+      alt="Withdraw button"
+      step={1}
+      caption="Click Withdraw and enter the amount"
+    />
+  </Step>
+  <Step>
+    **Approve the withdrawal.** The engine unwinds your positions and returns assets to your personal wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/smart-wallet/step-2-withdraw-confirmed.png"
+      alt="Withdrawal confirmed"
+      step={2}
+      caption="Assets returned to your wallet"
+    />
+  </Step>
+</Steps>
+
+## Safety Mechanisms
+
+- **30-min cooldown** between rebalances
+- **48 rebalances/day max** to prevent excessive trading
+- **Halt after 3 consecutive failures** — engine pauses and alerts you
+- **Circuit breaker** on >15% TVL drop in a single cycle

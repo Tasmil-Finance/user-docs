@@ -1,0 +1,113 @@
+---
+title: Performance & History
+description: Track yield earned, high-water mark, and full transaction history
+---
+
+<TLDR>
+The Performance section shows your yield over time, high-water mark (HWM) tracking, and complete transaction history. See exactly how much you've earned, when rebalances happened, and how each protocol contributed to your returns.
+</TLDR>
+
+## Performance Chart
+
+<Steps>
+  <Step>
+    **Open the Performance tab.** From Portfolio, click the "Performance" sub-tab.
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/performance/step-1-open-tab.png"
+      alt="Performance tab"
+      step={1}
+      caption="Switch to the Performance view"
+    />
+  </Step>
+  <Step>
+    **Select time range.** Choose 24h, 7d, 30d, or All to see different periods.
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/performance/step-2-time-range.png"
+      alt="Time range selector"
+      step={2}
+      caption="Toggle between time ranges"
+    />
+  </Step>
+  <Step>
+    **Read the chart.** The line shows your total portfolio value over time. Green areas indicate growth, annotations show rebalance events.
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/performance/step-3-read-chart.png"
+      alt="Performance chart with annotations"
+      step={3}
+      caption="Portfolio value over time with rebalance event markers"
+    />
+  </Step>
+</Steps>
+
+## Key Metrics
+
+| Metric | What it means |
+|--------|--------------|
+| **Total Yield** | Cumulative earnings since first deposit |
+| **APY (Realized)** | Actual annualized return based on your history |
+| **High-Water Mark** | Highest portfolio value ever reached |
+| **Drawdown** | Current distance below HWM (if any) |
+| **Time Weighted Return** | Performance adjusted for deposit/withdrawal timing |
+
+<StepScreenshot
+  src="/docs/using-the-app/portfolio/performance/metrics-panel.png"
+  alt="Key metrics panel"
+  caption="Key performance metrics at a glance"
+/>
+
+## Transaction History
+
+<Steps>
+  <Step>
+    **Scroll to Activity section.** All transactions are listed chronologically.
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/performance/step-1-activity.png"
+      alt="Activity section"
+      step={1}
+      caption="Full transaction history"
+    />
+  </Step>
+  <Step>
+    **Filter by type.** Use filters to show only specific transaction types:
+    - Deposits
+    - Withdrawals
+    - Rebalances
+    - Harvests (reward claims)
+    - Bridge transfers
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/performance/step-2-filter.png"
+      alt="Transaction filters"
+      step={2}
+      caption="Filter transactions by type"
+    />
+  </Step>
+  <Step>
+    **Click a transaction for details.** See the full breakdown: amounts, fees, pool, and Stellar transaction hash (clickable link to explorer).
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/performance/step-3-tx-detail.png"
+      alt="Transaction detail"
+      step={3}
+      caption="Click any transaction to see full details and explorer link"
+    />
+  </Step>
+</Steps>
+
+## Per-Protocol Breakdown
+
+The performance view also shows yield contribution by protocol:
+
+<StepScreenshot
+  src="/docs/using-the-app/portfolio/performance/protocol-breakdown.png"
+  alt="Per-protocol yield breakdown"
+  caption="See how much each protocol contributed to your total yield"
+/>
+
+<Callout type="info">
+Performance data updates every 5 minutes when the Position Sync job runs. There may be a brief delay between on-chain changes and dashboard updates.
+</Callout>

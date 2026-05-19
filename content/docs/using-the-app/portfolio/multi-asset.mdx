@@ -1,0 +1,78 @@
+---
+title: Multi-Asset View
+description: Manage USDC, XLM, and other assets across protocols
+---
+
+<TLDR>
+The Multi-Asset view shows your holdings broken down by token. See how much USDC, XLM, BLND, and other tokens you hold across your wallet and all protocol positions. Track each asset's allocation and performance independently.
+</TLDR>
+
+## Step-by-Step: View Multi-Asset Breakdown
+
+<Steps>
+  <Step>
+    **Open the Assets tab.** From Portfolio, click the "Assets" sub-tab.
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/multi-asset/step-1-assets-tab.png"
+      alt="Assets tab"
+      step={1}
+      caption="Switch to the Assets view"
+    />
+  </Step>
+  <Step>
+    **View asset breakdown.** Each row shows:
+    - Token name and icon
+    - Total balance (wallet + deployed)
+    - USD value
+    - Allocation percentage (pie chart)
+    - Where it's deployed (protocol breakdown)
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/multi-asset/step-2-asset-list.png"
+      alt="Asset breakdown list"
+      step={2}
+      caption="See each token's total balance and where it's deployed"
+    />
+  </Step>
+  <Step>
+    **Click an asset for details.** See the full breakdown of where that specific token is:
+    - In wallet (available)
+    - In Blend (lending)
+    - In Soroswap (LP)
+    - In Aquarius (LP)
+    - Pending rewards
+
+    <StepScreenshot
+      src="/docs/using-the-app/portfolio/multi-asset/step-3-asset-detail.png"
+      alt="Asset detail breakdown"
+      step={3}
+      caption="Full breakdown of where your USDC (or any token) is deployed"
+    />
+  </Step>
+</Steps>
+
+## Asset Allocation Chart
+
+<StepScreenshot
+  src="/docs/using-the-app/portfolio/multi-asset/allocation-chart.png"
+  alt="Asset allocation pie chart"
+  caption="Visual breakdown of your portfolio by asset type"
+/>
+
+The pie chart shows your portfolio composition:
+- **USDC** — stablecoin positions (lending, LP)
+- **XLM** — native token positions
+- **BLND** — unclaimed/held reward tokens
+- **LP Tokens** — liquidity pool shares (valued in USD)
+
+## Funding with Multiple Assets
+
+Both USDC and XLM can be deposited into your vault:
+- Each asset deploys independently into matching strategies
+- The base asset auto-aligns on first fund
+- You can hold and earn on both simultaneously
+
+<Callout type="info">
+The Multi-Asset view aggregates data from all protocols. If you have USDC in Blend lending AND in a Soroswap LP, both appear under the USDC row with their individual breakdowns.
+</Callout>

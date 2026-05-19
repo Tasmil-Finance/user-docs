@@ -1,0 +1,12 @@
+{
+  "title": "Using the App",
+  "icon": "AppWindow",
+  "pages": [
+    "index",
+    "chat",
+    "prompt-recipes",
+    "aggregate",
+    "farming",
+    "portfolio"
+  ]
+}

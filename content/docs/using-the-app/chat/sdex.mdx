@@ -1,0 +1,127 @@
+---
+title: SDEX (Stellar DEX)
+description: Place limit orders, market orders, and manage offers on Stellar's native orderbook
+---
+
+<TLDR>
+The SDEX agent operates on Stellar's built-in decentralized exchange orderbook. Place limit orders at specific prices, execute market orders for immediate fills, and manage your open offers.
+</TLDR>
+
+## Supported Operations
+
+| Operation | What it does | Example prompt |
+|-----------|-------------|----------------|
+| **Limit Order** | Place an order at a specific price | "Place a limit order: sell 100 USDC at 0.12 XLM each" |
+| **Market Order** | Execute immediately at best available price | "Market buy 500 XLM with USDC on SDEX" |
+| **Cancel Order** | Remove an open offer | "Cancel my open USDC/XLM offer on SDEX" |
+| **Check Orderbook** | View current bids/asks | "Show the USDC/XLM orderbook" |
+| **List My Offers** | See your open orders | "What are my open SDEX offers?" |
+
+---
+
+## Place a Limit Order
+
+<Steps>
+  <Step>
+    **Type your limit order.** Example: "Place a limit order to sell 100 USDC at 8.5 XLM per USDC on SDEX"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/sdex/step-1-limit-prompt.png"
+      alt="Typing limit order"
+      step={1}
+      caption="Specify the amount, price, and direction (buy/sell)"
+    />
+  </Step>
+  <Step>
+    **Review order details.** The agent confirms: asset pair, amount, price, and whether it will fill immediately or sit on the book.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/sdex/step-2-limit-review.png"
+      alt="Limit order review"
+      step={2}
+      caption="Review your order parameters before placing"
+    />
+  </Step>
+  <Step>
+    **Approve and sign.** The order is placed on the Stellar orderbook.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/sdex/step-3-limit-confirmed.png"
+      alt="Limit order placed"
+      step={3}
+      caption="Order placed — it will fill when the market reaches your price"
+    />
+  </Step>
+</Steps>
+
+<Callout type="info">
+SDEX limit orders have **zero slippage** — they fill at exactly your specified price or not at all. They remain open until filled or cancelled.
+</Callout>
+
+---
+
+## Market Order
+
+<Steps>
+  <Step>
+    **Type your market order.** Example: "Market buy 500 XLM with USDC on SDEX"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/sdex/step-1-market-prompt.png"
+      alt="Market order request"
+      step={1}
+      caption="Specify the amount for immediate execution"
+    />
+  </Step>
+  <Step>
+    **Review the fill estimate.** The agent shows expected fill price based on current orderbook depth.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/sdex/step-2-market-estimate.png"
+      alt="Market order estimate"
+      step={2}
+      caption="See the expected average fill price"
+    />
+  </Step>
+  <Step>
+    **Approve and execute.** The order fills immediately against existing offers.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/sdex/step-3-market-confirmed.png"
+      alt="Market order filled"
+      step={3}
+      caption="Order filled at the best available prices"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Cancel an Order
+
+<Steps>
+  <Step>
+    **Request cancellation.** Example: "Cancel my open USDC/XLM sell offer on SDEX"
+  </Step>
+  <Step>
+    **Confirm which offer.** If you have multiple, the agent lists them for you to pick.
+  </Step>
+  <Step>
+    **Approve cancellation.** The offer is removed from the orderbook and funds are released.
+  </Step>
+</Steps>
+
+---
+
+## Check Orderbook & Offers
+
+**Example prompts:**
+- "Show the USDC/XLM orderbook on SDEX"
+- "What are my open SDEX offers?"
+- "What's the best bid for USDC/XLM?"
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/sdex/orderbook-view.png"
+  alt="SDEX orderbook view"
+  caption="View current bids, asks, and spread for any pair"
+/>

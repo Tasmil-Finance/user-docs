@@ -1,0 +1,122 @@
+---
+title: Swap
+description: Exchange tokens at the best on-chain rate via SDEX or Soroswap routing
+---
+
+<TLDR>
+The Aggregate swap surface exchanges tokens at the best available on-chain rate. The aggregator checks both SDEX orderbook and Soroswap pool liquidity, picks the route with least slippage, and shows you a quote before you confirm.
+</TLDR>
+
+## Step-by-Step: Execute a Swap
+
+<Steps>
+  <Step>
+    **Navigate to the Aggregate tab.** Click "Aggregate" in the left sidebar navigation.
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-1-navigate.png"
+      alt="Navigate to Aggregate tab"
+      step={1}
+      caption="Click Aggregate in the sidebar"
+    />
+  </Step>
+  <Step>
+    **Select the Swap mode.** The Aggregate surface defaults to Swap. Make sure the "Swap" tab is active (not "Bridge").
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-2-swap-tab.png"
+      alt="Swap tab selected"
+      step={2}
+      caption="Ensure the Swap tab is active"
+    />
+  </Step>
+  <Step>
+    **Choose your tokens.** Select the source token (e.g., USDC) and destination token (e.g., XLM) from the dropdowns.
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-3-select-tokens.png"
+      alt="Token selection dropdowns"
+      step={3}
+      caption="Pick your source and destination tokens"
+    />
+  </Step>
+  <Step>
+    **Enter the amount.** Type the amount you want to swap. The aggregator immediately fetches quotes from both SDEX and Soroswap.
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-4-enter-amount.png"
+      alt="Enter swap amount"
+      step={4}
+      caption="Enter your swap amount — quotes update in real-time"
+    />
+  </Step>
+  <Step>
+    **Review the quote.** The interface shows:
+    - **Expected output** — how many tokens you'll receive
+    - **Route** — whether SDEX or Soroswap gives the better rate
+    - **Price impact** — percentage impact on the pool/orderbook
+    - **Minimum received** — worst-case with slippage tolerance (3%)
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-5-review-quote.png"
+      alt="Swap quote details"
+      step={5}
+      caption="Review the route, rate, and slippage before confirming"
+    />
+  </Step>
+  <Step>
+    **Click Swap.** This triggers the transaction build and shows the approval card.
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-6-click-swap.png"
+      alt="Click swap button"
+      step={6}
+      caption="Click the Swap button to proceed"
+    />
+  </Step>
+  <Step>
+    **Approve in your wallet.** Your wallet extension (Freighter/xBull/Albedo) pops up asking you to sign the transaction.
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-7-wallet-approve.png"
+      alt="Wallet approval popup"
+      step={7}
+      caption="Sign the transaction in your wallet"
+    />
+  </Step>
+  <Step>
+    **Swap confirmed.** The interface shows the completed swap with final amounts.
+
+    <StepScreenshot
+      src="/docs/using-the-app/aggregate/step-8-swap-confirmed.png"
+      alt="Swap confirmed"
+      step={8}
+      caption="Swap complete — tokens are in your wallet"
+    />
+  </Step>
+</Steps>
+
+## How Routing Works
+
+The aggregator picks the best route automatically:
+
+| Swap Size | Typical Route | Why |
+|-----------|---------------|-----|
+| Small (under $100) | SDEX orderbook | Deep liquidity, zero slippage at limit price |
+| Medium ($100–$1000) | Soroswap AMM | Consistent fills, predictable pricing |
+| Large (over $1000) | Split across both | Reduces total price impact |
+
+## Slippage Protection
+
+<Callout type="info">
+Default slippage tolerance is **3%** (97% minimum output). If price impact exceeds 1.5%, a warning appears on the quote. You can adjust slippage in settings.
+</Callout>
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| "Insufficient balance" | Check your wallet has enough of the source token |
+| "No route found" | The token pair may not have liquidity — try a different pair |
+| "Transaction failed" | Price moved during signing — try again with higher slippage |
+| Quote shows high impact | Split into smaller swaps or wait for more liquidity |

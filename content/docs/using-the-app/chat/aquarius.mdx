@@ -1,0 +1,133 @@
+---
+title: Aquarius
+description: Provide liquidity and earn rewards on Aquarius AMM pools
+---
+
+<TLDR>
+The Aquarius agent manages AMM pool operations on Aquarius protocol. Deposit liquidity to earn trading fees plus Aquarius reward incentives, withdraw positions, and claim accumulated rewards.
+</TLDR>
+
+## Supported Operations
+
+| Operation | What it does | Example prompt |
+|-----------|-------------|----------------|
+| **Add Liquidity** | Deposit tokens into an Aquarius AMM pool | "Add 100 USDC to the Aquarius USDC/XLM pool" |
+| **Remove Liquidity** | Withdraw your pool position | "Remove my Aquarius LP position" |
+| **Claim Rewards** | Harvest Aquarius incentive rewards | "Claim my Aquarius rewards" |
+| **Check Position** | View pool share and accumulated rewards | "What's my Aquarius position?" |
+
+---
+
+## Add Liquidity
+
+<Steps>
+  <Step>
+    **Type your deposit request.** Example: "Add 100 USDC and equivalent XLM to Aquarius"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-1-add-prompt.png"
+      alt="Typing add liquidity request"
+      step={1}
+      caption="Specify the amount and pool pair"
+    />
+  </Step>
+  <Step>
+    **Review pool info.** The agent shows current pool APY (fees + incentives), your expected share, and token amounts needed.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-2-add-details.png"
+      alt="Pool details with APY breakdown"
+      step={2}
+      caption="See the combined APY from trading fees and Aquarius incentives"
+    />
+  </Step>
+  <Step>
+    **Approve the transaction.** Sign in your wallet to deposit.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-3-add-approval.png"
+      alt="Add liquidity approval card"
+      step={3}
+      caption="Approve the deposit transaction"
+    />
+  </Step>
+  <Step>
+    **Position confirmed.** Your LP is now earning fees and incentive rewards.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-4-add-confirmed.png"
+      alt="Liquidity added confirmation"
+      step={4}
+      caption="Your position is active and earning"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Remove Liquidity
+
+<Steps>
+  <Step>
+    **Type your withdrawal request.** Example: "Remove my Aquarius USDC/XLM position"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-1-remove-prompt.png"
+      alt="Typing remove request"
+      step={1}
+      caption="Specify which pool to withdraw from"
+    />
+  </Step>
+  <Step>
+    **Review and approve.** See the tokens you'll receive back, then sign.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-2-remove-confirmed.png"
+      alt="Remove confirmed"
+      step={2}
+      caption="Tokens returned to your wallet"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Claim Rewards
+
+<Steps>
+  <Step>
+    **Ask to claim.** Example: "Claim my Aquarius rewards"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-1-claim-prompt.png"
+      alt="Claim rewards request"
+      step={1}
+      caption="Request to harvest accumulated incentive rewards"
+    />
+  </Step>
+  <Step>
+    **Review claimable amount and approve.** Sign to receive rewards.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/aquarius/step-2-claim-confirmed.png"
+      alt="Rewards claimed"
+      step={2}
+      caption="Incentive rewards claimed to your wallet"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Check Position
+
+**Example prompts:**
+- "What's my Aquarius position worth?"
+- "How much am I earning on Aquarius?"
+- "Show my Aquarius rewards"
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/aquarius/position-overview.png"
+  alt="Aquarius position overview"
+  caption="View your pool share, current value, and pending rewards"
+/>

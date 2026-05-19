@@ -1,0 +1,119 @@
+---
+title: Deposit Mode
+description: Pick a specific pool and let the AI deposit — for users who know which protocol they want
+---
+
+<TLDR>
+Deposit mode lets you target a single protocol pool. You pick Blend lending, a Soroswap LP pair, or an Aquarius pool — the AI executes the deposit on-chain. No automatic rebalancing — your funds stay in the pool you chose.
+</TLDR>
+
+## When to Use Deposit Mode
+
+- You did your own research and want a specific pool
+- You want Blend-only exposure without the engine shifting to other protocols
+- You're testing a pool before committing larger amounts
+
+## Step-by-Step: Deposit into a Pool
+
+<Steps>
+  <Step>
+    **Navigate to Farming → Deposit tab.** Select the "Deposit" mode from the tabs.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-1-navigate.png"
+      alt="Deposit mode tab"
+      step={1}
+      caption="Select Deposit mode"
+    />
+  </Step>
+  <Step>
+    **Browse available pools.** The pool list shows all available pools sorted by APY. Filter by:
+    - Asset (USDC, XLM)
+    - Protocol (Blend, Soroswap, Aquarius, Phoenix)
+    - Risk level
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-2-browse-pools.png"
+      alt="Pool list with filters"
+      step={2}
+      caption="Browse and filter pools by asset, protocol, and APY"
+    />
+  </Step>
+  <Step>
+    **Select a pool.** Click on the pool you want. The detail view shows:
+    - Current APY (base + incentives)
+    - TVL (total value locked)
+    - Pool composition
+    - Risk score
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-3-pool-details.png"
+      alt="Pool detail view"
+      step={3}
+      caption="Review pool APY, TVL, and risk before depositing"
+    />
+  </Step>
+  <Step>
+    **Enter deposit amount.** Type the amount you want to deposit. Minimum varies by protocol (typically ~10 USDC or XLM).
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-4-enter-amount.png"
+      alt="Enter deposit amount"
+      step={4}
+      caption="Enter your deposit amount"
+    />
+  </Step>
+  <Step>
+    **Review and approve.** The AI builds the transaction, simulates it, and shows the confirmation card with expected shares.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-5-approve.png"
+      alt="Deposit approval card"
+      step={5}
+      caption="Review simulation and approve the deposit"
+    />
+  </Step>
+  <Step>
+    **Sign in your wallet.** Confirm the transaction in Freighter/xBull/Albedo.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-6-sign.png"
+      alt="Wallet signature"
+      step={6}
+      caption="Sign the deposit transaction"
+    />
+  </Step>
+  <Step>
+    **Deposit confirmed.** Your position appears in the Farming dashboard. The AI monitors APY and alerts you if it drops significantly.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/deposit/step-7-confirmed.png"
+      alt="Deposit confirmed"
+      step={7}
+      caption="Your deposit is active and earning yield"
+    />
+  </Step>
+</Steps>
+
+## Monitoring Your Position
+
+After depositing, the Farming dashboard shows:
+- Current value (principal + earned yield)
+- APY (updated in real-time)
+- Time in pool
+- Claimable rewards (if applicable)
+
+<Callout type="info">
+Deposit mode is single-pool — the engine won't rebalance away from your chosen pool. If you want automatic multi-pool management, switch to [Smart Wallet mode](/docs/using-the-app/farming/smart-wallet-mode).
+</Callout>
+
+## Withdrawing from Deposit Mode
+
+<Steps>
+  <Step>
+    **Click "Withdraw" on your position.** Enter the amount or click "Max" for full withdrawal.
+  </Step>
+  <Step>
+    **Approve the withdrawal.** Sign the transaction. Assets return to your wallet including earned yield.
+  </Step>
+</Steps>

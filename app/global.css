@@ -1,0 +1,69 @@
+@import 'tailwindcss' source(none);
+@import 'fumadocs-ui/css/black.css';
+@import 'fumadocs-ui/css/preset.css';
+ 
+@source ".";
+@source "../components";
+@source '../node_modules/fumadocs-ui/dist/**/*.js';
+
+@theme {
+  --default-font-family: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --fd-layout-width: 1600px;
+}
+
+@theme {
+  --color-fd-primary: hsl(203, 100%, 73%);
+  --color-fd-primary-foreground: hsl(0, 0%, 9%);
+}
+
+@keyframes shimmer-text {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Force sidebar footer visible on desktop */
+div:has(> [data-sidebar-footer]) {
+  display: flex !important;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Reduce gap between sidebar tabs and navigation */
+#nd-docs-layout aside .size-full.rounded-\[inherit\] {
+  padding-top: 0.5rem !important;
+}
+
+#nd-docs-layout aside .size-full.rounded-\[inherit\] > div > :nth-child(2) {
+  margin-top: 0 !important;
+}
+
+/* Active sidebar item indicator vertical spacing */
+#nd-docs-layout aside [data-active="true"]::before {
+  inset-block: 0.5rem !important;
+  background-color: var(--color-fd-primary) !important;
+}
+
+#nd-docs-layout aside [data-active="true"] {
+  color: var(--color-fd-primary) !important;
+}
+
+/* TOC active indicator spacing */
+#nd-docs-layout [data-toc] a[data-active="true"],
+#nd-docs-layout div[style*="toc"] a[data-active="true"] {
+  border-left-width: 2px !important;
+  padding-block: 0.25rem !important;
+}
+
+/* TOC section top spacing */
+#nd-docs-layout [style*="grid-area:toc"] {
+  padding-top: 1.5rem;
+}
+
+/* Toolbar divider spacing */
+#nd-docs-layout .border-b.pb-6 {
+  margin-bottom: 1.5rem !important;
+}

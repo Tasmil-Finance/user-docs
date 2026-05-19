@@ -1,0 +1,55 @@
+---
+title: Farming
+description: AI-managed yield vaults with three modes — Smart Wallet, Deposit, and Custom
+---
+
+<TLDR>
+Farming is where your assets earn yield. Three modes: **Smart Wallet** (AI auto-rebalances across protocols), **Deposit** (you pick one pool, AI executes), and **Custom** (you set exact allocations). All modes use the keeper-wallet contract for security.
+</TLDR>
+
+## Three Modes
+
+| Mode | Best for | AI involvement | Risk |
+|------|----------|----------------|------|
+| **[Smart Wallet](/docs/using-the-app/farming/smart-wallet-mode)** | Set-and-forget users | Full auto — AI picks pools, rebalances, harvests | Varies by preset |
+| **[Deposit](/docs/using-the-app/farming/deposit-mode)** | Users who know which pool they want | AI executes only — no rebalancing | Pool-specific |
+| **[Custom](/docs/using-the-app/farming/custom-mode)** | Advanced users | AI executes your allocation plan | User-defined |
+
+<StepScreenshot
+  src="/docs/using-the-app/farming/farming-modes-overview.png"
+  alt="Three farming modes comparison"
+  caption="Choose your farming mode based on how much control you want"
+/>
+
+## How to Access Farming
+
+<Steps>
+  <Step>
+    **Click "Farming" in the sidebar.** The Farming page shows your active positions and mode selector.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/step-1-navigate.png"
+      alt="Navigate to Farming"
+      step={1}
+      caption="Click Farming in the left sidebar"
+    />
+  </Step>
+  <Step>
+    **Choose your mode.** Select Smart Wallet, Deposit, or Custom from the mode tabs at the top.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/step-2-select-mode.png"
+      alt="Mode selector tabs"
+      step={2}
+      caption="Pick your farming mode"
+    />
+  </Step>
+</Steps>
+
+## Quick Start Guides
+
+<Cards>
+  <Card title="Smart Wallet Mode" href="/docs/using-the-app/farming/smart-wallet-mode" description="AI auto-manages your yield across protocols" />
+  <Card title="Deposit Mode" href="/docs/using-the-app/farming/deposit-mode" description="Pick a specific pool, AI executes the deposit" />
+  <Card title="Custom Mode" href="/docs/using-the-app/farming/custom-mode" description="Set your own allocation percentages" />
+</Cards>

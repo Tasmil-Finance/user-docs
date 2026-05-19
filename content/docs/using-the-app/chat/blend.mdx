@@ -1,0 +1,263 @@
+---
+title: Blend Protocol
+description: Lend, borrow, repay, withdraw, and claim BLND rewards via the Blend agent
+---
+
+<TLDR>
+The Blend agent handles all lending/borrowing operations on Blend protocol. You can supply assets to earn yield, borrow against collateral, repay loans, withdraw positions, and claim BLND emission rewards — all through natural language in chat.
+</TLDR>
+
+## Supported Operations
+
+| Operation | What it does | Example prompt |
+|-----------|-------------|----------------|
+| **Supply** | Deposit assets into a lending pool to earn interest | "Supply 100 USDC to Blend" |
+| **Withdraw** | Remove your supplied assets from a pool | "Withdraw 50 USDC from Blend" |
+| **Borrow** | Borrow assets against your collateral | "Borrow 200 XLM against my USDC collateral" |
+| **Repay** | Pay back borrowed assets | "Repay 100 XLM on Blend" |
+| **Claim Rewards** | Harvest BLND emission rewards | "Claim my BLND rewards" |
+| **Check Position** | View your supply, borrow, health factor | "What's my Blend position?" |
+
+---
+
+## Supply Assets (Lending)
+
+Earn interest by supplying USDC or XLM to Blend lending pools.
+
+<Steps>
+  <Step>
+    **Type your supply request.** Example: "Supply 100 USDC to the Blend Fixed pool"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-1-supply-prompt.png"
+      alt="Typing supply request in chat"
+      step={1}
+      caption="Type your supply amount and target pool"
+    />
+  </Step>
+  <Step>
+    **Review the agent's response.** The Blend agent confirms the pool, current APY, and builds the transaction.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-2-supply-response.png"
+      alt="Agent response with pool details"
+      step={2}
+      caption="Agent shows pool APY and prepares the transaction"
+    />
+  </Step>
+  <Step>
+    **Review the approval card.** Check the simulation: amount, pool, expected shares received, gas fee.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-3-supply-approval.png"
+      alt="Transaction approval card for supply"
+      step={3}
+      caption="Review simulation results before signing"
+    />
+  </Step>
+  <Step>
+    **Sign in your wallet.** Click Approve, then confirm in Freighter/xBull/Albedo.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-4-supply-sign.png"
+      alt="Wallet signature popup"
+      step={4}
+      caption="Approve the transaction in your wallet extension"
+    />
+  </Step>
+  <Step>
+    **Confirmation.** The agent confirms the transaction succeeded and shows your updated position.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-5-supply-confirmed.png"
+      alt="Supply confirmed with updated position"
+      step={5}
+      caption="Transaction confirmed — your supply is now earning interest"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Withdraw Assets
+
+Remove your supplied assets from a Blend pool.
+
+<Steps>
+  <Step>
+    **Type your withdraw request.** Example: "Withdraw 50 USDC from Blend"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-1-withdraw-prompt.png"
+      alt="Typing withdraw request"
+      step={1}
+      caption="Specify the amount and asset to withdraw"
+    />
+  </Step>
+  <Step>
+    **Review the approval card.** The agent shows how much you'll receive after any accrued interest.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-2-withdraw-approval.png"
+      alt="Withdraw approval card"
+      step={2}
+      caption="Review the withdrawal amount including accrued interest"
+    />
+  </Step>
+  <Step>
+    **Sign and confirm.** Approve in your wallet. Funds return to your keeper wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-3-withdraw-confirmed.png"
+      alt="Withdrawal confirmed"
+      step={3}
+      caption="Funds returned to your wallet"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Borrow Assets
+
+Borrow against your supplied collateral. Your health factor must stay above 1.0.
+
+<Steps>
+  <Step>
+    **Type your borrow request.** Example: "Borrow 200 XLM against my USDC on Blend"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-1-borrow-prompt.png"
+      alt="Typing borrow request"
+      step={1}
+      caption="Specify the borrow amount and collateral"
+    />
+  </Step>
+  <Step>
+    **Review health factor impact.** The agent shows your current health factor and what it will be after borrowing.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-2-borrow-health.png"
+      alt="Health factor preview"
+      step={2}
+      caption="Check that your health factor stays safely above 1.0"
+    />
+  </Step>
+  <Step>
+    **Approve and sign.** If the health factor is acceptable, approve the transaction.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-3-borrow-confirmed.png"
+      alt="Borrow confirmed"
+      step={3}
+      caption="Borrowed assets arrive in your wallet"
+    />
+  </Step>
+</Steps>
+
+<Callout type="warn">
+If your health factor drops below 1.0, your collateral can be liquidated. The agent warns you if a borrow would put you in a risky position.
+</Callout>
+
+---
+
+## Repay Loan
+
+Pay back borrowed assets to improve your health factor.
+
+<Steps>
+  <Step>
+    **Type your repay request.** Example: "Repay 100 XLM on Blend" or "Repay all my Blend debt"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-1-repay-prompt.png"
+      alt="Typing repay request"
+      step={1}
+      caption="Specify partial or full repayment"
+    />
+  </Step>
+  <Step>
+    **Review and approve.** The card shows the repay amount and your new health factor after repayment.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-2-repay-approval.png"
+      alt="Repay approval card"
+      step={2}
+      caption="Health factor improves after repayment"
+    />
+  </Step>
+  <Step>
+    **Confirmation.** Debt reduced, health factor improved.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-3-repay-confirmed.png"
+      alt="Repay confirmed"
+      step={3}
+      caption="Loan partially or fully repaid"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Claim BLND Rewards
+
+Harvest accumulated BLND emission rewards from your lending positions.
+
+<Steps>
+  <Step>
+    **Type your claim request.** Example: "Claim my BLND rewards" or "Harvest Blend emissions"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-1-claim-prompt.png"
+      alt="Typing claim request"
+      step={1}
+      caption="Ask to claim your accumulated rewards"
+    />
+  </Step>
+  <Step>
+    **Review claimable amount.** The agent shows how much BLND you've accumulated.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-2-claim-amount.png"
+      alt="Claimable BLND amount"
+      step={2}
+      caption="See your accumulated BLND before claiming"
+    />
+  </Step>
+  <Step>
+    **Approve and receive.** BLND tokens arrive in your wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/blend/step-3-claim-confirmed.png"
+      alt="Claim confirmed"
+      step={3}
+      caption="BLND rewards claimed to your wallet"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Check Your Position
+
+Ask the agent about your current Blend status — no transaction required.
+
+**Example prompts:**
+- "What's my Blend position?"
+- "What's my health factor on Blend?"
+- "How much USDC am I earning on Blend?"
+- "Show my Blend supply and borrow"
+
+The agent responds with:
+- Total supplied (per asset)
+- Total borrowed (per asset)
+- Current health factor
+- Accrued interest
+- Claimable BLND rewards
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/blend/position-overview.png"
+  alt="Blend position overview"
+  caption="Read-only position check — no signature required"
+/>

@@ -1,0 +1,129 @@
+---
+title: Custom Mode
+description: Set your own allocation percentages across multiple pools
+---
+
+<TLDR>
+Custom mode gives you full control over allocation. You define exactly what percentage goes to each pool — Blend lending, Soroswap LP, Aquarius, etc. The AI executes your plan and maintains the target weights, but only rebalances when you tell it to.
+</TLDR>
+
+## When to Use Custom Mode
+
+- You want specific exposure to multiple protocols
+- You have a strategy in mind (e.g., 60% lending, 40% LP)
+- You want to control when rebalancing happens
+
+## Step-by-Step: Create a Custom Allocation
+
+<Steps>
+  <Step>
+    **Navigate to Farming → Custom tab.** Select the "Custom" mode from the tabs.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-1-navigate.png"
+      alt="Custom mode tab"
+      step={1}
+      caption="Select Custom mode"
+    />
+  </Step>
+  <Step>
+    **Add pools to your allocation.** Click "Add Pool" and select from available pools. You can add multiple pools from different protocols.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-2-add-pools.png"
+      alt="Add pools to allocation"
+      step={2}
+      caption="Select pools to include in your custom allocation"
+    />
+  </Step>
+  <Step>
+    **Set allocation percentages.** Drag sliders or type percentages for each pool. Total must equal 100%.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-3-set-percentages.png"
+      alt="Set allocation percentages"
+      step={3}
+      caption="Define how much goes to each pool (must total 100%)"
+    />
+  </Step>
+  <Step>
+    **Review your allocation plan.** The interface shows:
+    - Expected blended APY
+    - Risk score (weighted average)
+    - Estimated gas costs for deployment
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-4-review-plan.png"
+      alt="Allocation plan review"
+      step={4}
+      caption="Review your blended APY and risk before deploying"
+    />
+  </Step>
+  <Step>
+    **Enter total deposit amount.** The system splits your deposit according to your percentages.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-5-enter-amount.png"
+      alt="Enter total deposit"
+      step={5}
+      caption="Enter the total amount — it splits per your allocation"
+    />
+  </Step>
+  <Step>
+    **Approve and deploy.** The AI builds multiple transactions (one per pool) and batches them. Sign to execute.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-6-approve-deploy.png"
+      alt="Deploy custom allocation"
+      step={6}
+      caption="Approve the batched deployment transactions"
+    />
+  </Step>
+  <Step>
+    **Allocation active.** Your custom allocation is now live. The dashboard shows each pool's performance individually.
+
+    <StepScreenshot
+      src="/docs/using-the-app/farming/custom/step-7-active.png"
+      alt="Custom allocation active"
+      step={7}
+      caption="Your custom allocation is deployed and earning"
+    />
+  </Step>
+</Steps>
+
+## Managing Your Custom Allocation
+
+### Rebalance Manually
+
+If pool weights drift from your targets (due to different APYs), you can trigger a manual rebalance:
+
+<Steps>
+  <Step>
+    **Click "Rebalance" on the Custom dashboard.** The system shows current vs target weights.
+  </Step>
+  <Step>
+    **Review the rebalance plan.** See which pools will receive more and which will be reduced.
+  </Step>
+  <Step>
+    **Approve.** Sign to execute the rebalance.
+  </Step>
+</Steps>
+
+### Adjust Percentages
+
+<Steps>
+  <Step>
+    **Click "Edit Allocation."** Adjust your percentage sliders.
+  </Step>
+  <Step>
+    **Save and rebalance.** The engine adjusts positions to match your new targets.
+  </Step>
+</Steps>
+
+### Add or Remove Pools
+
+You can add new pools or remove existing ones from your allocation at any time. The system rebalances accordingly.
+
+<Callout type="info">
+Custom mode does NOT auto-rebalance. Your allocation drifts naturally as different pools earn at different rates. Trigger rebalance manually when you want to reset to target weights.
+</Callout>

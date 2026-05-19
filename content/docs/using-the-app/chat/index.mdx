@@ -1,0 +1,73 @@
+---
+title: Chat
+description: Talk to AI agents to research, deposit, rebalance, claim rewards, and more
+---
+
+<TLDR>
+The Chat tab is your interface to Tasmil's 13 specialized AI agents. Ask in plain English — the supervisor routes your request to the right agent. Every transaction shows a confirmation card you must approve before anything executes on-chain.
+</TLDR>
+
+## How Chat Works
+
+<Steps>
+  <Step>
+    **You ask.** Type anything in plain English in the chat input at the bottom of the screen.
+  </Step>
+  <Step>
+    **Supervisor routes.** The routing agent picks the right specialist — a protocol agent for transactions, a research agent for read-only queries, a bridge agent for cross-chain moves.
+  </Step>
+  <Step>
+    **Agent responds.** Research questions answer inline with data. Transaction requests show an approval card.
+  </Step>
+  <Step>
+    **You approve.** Every on-chain action shows a card with simulation results. You inspect it and sign — or reject it. Nothing executes without your signature.
+  </Step>
+</Steps>
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/chat-interface.png"
+  alt="Chat interface overview"
+  caption="The chat interface with message input, agent responses, and approval cards"
+/>
+
+## The Human-in-the-Loop Card
+
+When an agent proposes an on-chain action, you see a confirmation card showing:
+
+- **What will happen** — Plain-English summary of the transaction
+- **Simulation result** — Pre-flight of the Soroban transaction, including fee estimate and expected outcome
+- **Approve or Reject** — Sign to proceed, or decline. Nothing happens on-chain if you reject
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/approval-card.png"
+  alt="Transaction approval card"
+  caption="Every transaction requires your explicit approval before execution"
+/>
+
+<Callout type="warn">
+**Nothing executes without your explicit signature.** Tasmil agents cannot move funds on their own — they propose, you decide.
+</Callout>
+
+## Protocol Guides
+
+Each protocol agent supports specific DeFi operations. Click through for step-by-step guides:
+
+<Cards>
+  <Card title="Blend" href="/docs/using-the-app/chat/blend" description="Lend, borrow, repay, withdraw, claim BLND rewards" />
+  <Card title="Soroswap" href="/docs/using-the-app/chat/soroswap" description="Swap tokens, add/remove liquidity pools" />
+  <Card title="Aquarius" href="/docs/using-the-app/chat/aquarius" description="AMM pools, provide liquidity, claim rewards" />
+  <Card title="Phoenix" href="/docs/using-the-app/chat/phoenix" description="DEX swaps, provide liquidity" />
+  <Card title="SDEX" href="/docs/using-the-app/chat/sdex" description="Stellar DEX limit orders, market orders, manage offers" />
+  <Card title="DeFindex" href="/docs/using-the-app/chat/defindex" description="Vault deposits, withdrawals, check positions" />
+  <Card title="Allbridge" href="/docs/using-the-app/chat/allbridge" description="Cross-chain bridging to/from Stellar" />
+  <Card title="Research & Yield" href="/docs/using-the-app/chat/research" description="Market data, yield comparisons, risk analysis" />
+</Cards>
+
+## Prompting Tips
+
+- **Be specific about amounts.** "Supply 100 USDC to Blend" works better than "put some money in lending"
+- **Mention the asset.** If you hold both USDC and XLM, say which one you mean
+- **Ask questions freely.** Research and Info agents are read-only — no signature required
+- **Multi-step is fine.** "Check my health factor on Blend, then tell me if I should adjust" routes correctly
+
+See the full prompt recipe collection at [Prompt Recipes](/docs/using-the-app/prompt-recipes).

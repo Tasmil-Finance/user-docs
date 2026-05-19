@@ -1,0 +1,177 @@
+---
+title: Soroswap
+description: Swap tokens and manage liquidity pools on Soroswap DEX
+---
+
+<TLDR>
+The Soroswap agent handles token swaps and liquidity pool operations on Soroswap AMM. Swap any supported pair, add liquidity to earn trading fees, or remove your LP position — all via chat.
+</TLDR>
+
+## Supported Operations
+
+| Operation | What it does | Example prompt |
+|-----------|-------------|----------------|
+| **Swap** | Exchange one token for another | "Swap 50 USDC to XLM on Soroswap" |
+| **Add Liquidity** | Provide both tokens to a pool | "Add 100 USDC and equivalent XLM to Soroswap LP" |
+| **Remove Liquidity** | Withdraw your LP position | "Remove my USDC/XLM LP from Soroswap" |
+| **Check Position** | View your LP shares and value | "What's my Soroswap LP position worth?" |
+
+---
+
+## Swap Tokens
+
+<Steps>
+  <Step>
+    **Type your swap request.** Example: "Swap 50 USDC to XLM on Soroswap"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-1-swap-prompt.png"
+      alt="Typing swap request"
+      step={1}
+      caption="Specify the amount, source token, and destination token"
+    />
+  </Step>
+  <Step>
+    **Review the quote.** The agent shows: expected output, price impact, minimum received (with 3% slippage tolerance).
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-2-swap-quote.png"
+      alt="Swap quote with price impact"
+      step={2}
+      caption="Review the exchange rate and slippage before confirming"
+    />
+  </Step>
+  <Step>
+    **Approve the transaction.** Check the approval card and sign in your wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-3-swap-approval.png"
+      alt="Swap approval card"
+      step={3}
+      caption="Approve the swap transaction"
+    />
+  </Step>
+  <Step>
+    **Swap confirmed.** The agent shows the final amounts received.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-4-swap-confirmed.png"
+      alt="Swap confirmed"
+      step={4}
+      caption="Tokens swapped successfully"
+    />
+  </Step>
+</Steps>
+
+<Callout type="info">
+Soroswap uses a default 3% slippage tolerance (97% minimum output). If price impact exceeds 1.5%, the agent warns you before proceeding.
+</Callout>
+
+---
+
+## Add Liquidity
+
+Provide both tokens to a Soroswap pool to earn trading fees.
+
+<Steps>
+  <Step>
+    **Type your LP request.** Example: "Add 100 USDC and equivalent XLM to the USDC/XLM pool on Soroswap"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-1-lp-prompt.png"
+      alt="Typing add liquidity request"
+      step={1}
+      caption="Specify one amount — the agent calculates the matching amount for the other token"
+    />
+  </Step>
+  <Step>
+    **Review the pool details.** The agent shows: pool ratio, your share percentage, estimated APY from fees.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-2-lp-details.png"
+      alt="Pool details and share calculation"
+      step={2}
+      caption="See your expected pool share and fee earnings"
+    />
+  </Step>
+  <Step>
+    **Approve the transaction.** The agent may build a swap-half + add-liquidity combo if you only hold one token.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-3-lp-approval.png"
+      alt="Add liquidity approval"
+      step={3}
+      caption="Approve the liquidity provision transaction"
+    />
+  </Step>
+  <Step>
+    **LP position confirmed.** You now hold LP tokens representing your pool share.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-4-lp-confirmed.png"
+      alt="LP position confirmed"
+      step={4}
+      caption="Your liquidity is now earning trading fees"
+    />
+  </Step>
+</Steps>
+
+<Callout type="warn">
+Providing liquidity carries impermanent loss risk. If the price ratio between the two tokens changes significantly, you may receive less value when withdrawing than if you had held the tokens separately.
+</Callout>
+
+---
+
+## Remove Liquidity
+
+Withdraw your LP position back to individual tokens.
+
+<Steps>
+  <Step>
+    **Type your remove request.** Example: "Remove my USDC/XLM LP from Soroswap" or "Remove 50% of my Soroswap LP"
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-1-remove-prompt.png"
+      alt="Typing remove liquidity request"
+      step={1}
+      caption="Specify full or partial removal"
+    />
+  </Step>
+  <Step>
+    **Review what you'll receive.** The agent shows the token amounts you'll get back based on current pool ratio.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-2-remove-preview.png"
+      alt="Remove liquidity preview"
+      step={2}
+      caption="See the exact amounts of each token you'll receive"
+    />
+  </Step>
+  <Step>
+    **Approve and receive tokens.** Both tokens return to your wallet.
+
+    <StepScreenshot
+      src="/docs/using-the-app/chat/soroswap/step-3-remove-confirmed.png"
+      alt="Remove liquidity confirmed"
+      step={3}
+      caption="LP removed — tokens returned to your wallet"
+    />
+  </Step>
+</Steps>
+
+---
+
+## Check LP Position
+
+Ask about your current Soroswap positions — no transaction required.
+
+**Example prompts:**
+- "What's my Soroswap LP position worth?"
+- "How much am I earning in Soroswap fees?"
+- "Show my Soroswap pools"
+
+<StepScreenshot
+  src="/docs/using-the-app/chat/soroswap/position-overview.png"
+  alt="Soroswap position overview"
+  caption="View your LP shares, current value, and accumulated fees"
+/>
