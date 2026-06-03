@@ -1,7 +1,7 @@
 <h1 align="center">Tasmil Finance — Documentation</h1>
 
 <p align="center">
-  User documentation for the <a href="https://zyf.ai">Tasmil Finance</a> platform
+  User documentation for the <a href="https://tasmil-finance.xyz">Tasmil Finance</a> platform
 </p>
 
 <p align="center">
