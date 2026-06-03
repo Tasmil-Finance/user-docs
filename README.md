@@ -60,5 +60,5 @@ For major additions (new guides, tutorials), open an issue first to discuss scop
 
 | Repository | Description |
 |------------|-------------|
-| [frontend](https://github.com/Tasmil-Finance/frontend) | Tasmil Finance web application |
+| [tasmil-finance](https://github.com/Tasmil-Finance/tasmil-finance) | Tasmil Finance web application |
 | [mcp-stellar](https://github.com/Tasmil-Finance/mcp-stellar) | Stellar DeFi MCP tools |
