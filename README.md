@@ -1,45 +1,64 @@
-# docs
+<h1 align="center">Tasmil Finance — Documentation</h1>
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+<p align="center">
+  User documentation for the <a href="https://zyf.ai">Tasmil Finance</a> platform
+</p>
 
-Run development server:
+<p align="center">
+  <img alt="Fumadocs" src="https://img.shields.io/badge/Fumadocs-Next.js-111827?style=for-the-badge" />
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-15-111827?style=for-the-badge" />
+</p>
+
+---
+
+## Overview
+
+This repository contains the user-facing documentation site for Tasmil Finance, built with [Fumadocs](https://fumadocs.vercel.app) on Next.js.
+
+---
+
+## Local Development
 
 ```bash
-npm run dev
-# or
+# Install dependencies
+pnpm install
+
+# Start dev server (port 3000)
 pnpm dev
-# or
-yarn dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the docs site.
 
-## Explore
+---
 
-In the project, you can see:
+## Project Structure
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+```
+app/
+├── (home)/          # Landing page for docs
+└── docs/            # Documentation layout and MDX pages
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+content/
+└── docs/            # MDX content files
 
-### Fumadocs MDX
+lib/
+├── source.ts        # Content source adapter
+└── layout.shared.tsx# Shared layout options
+```
 
-A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
+---
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
+## Contributing
 
-## Learn More
+Documentation improvements are welcome. Open a pull request with your changes.
 
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
+For major additions (new guides, tutorials), open an issue first to discuss scope.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+---
+
+## Related
+
+| Repository | Description |
+|------------|-------------|
+| [frontend](https://github.com/Tasmil-Finance/frontend) | Tasmil Finance web application |
+| [mcp-stellar](https://github.com/Tasmil-Finance/mcp-stellar) | Stellar DeFi MCP tools |
